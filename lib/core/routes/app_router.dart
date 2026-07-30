@@ -1,11 +1,15 @@
 import 'package:multi_trendzz/core/model/chat_user_model.dart';
 import 'package:multi_trendzz/core/model/product_detail_item.dart';
 import 'package:multi_trendzz/core/model/track_order_model.dart';
+import 'package:multi_trendzz/features/chat/screens/chat_list/seller_chat_list_screen.dart';
+import 'package:multi_trendzz/features/chat/screens/chat_list/seller_chat_screen.dart';
+import 'package:multi_trendzz/presentation/admin/screens/admin_dashboard/admin_dashboard_screen.dart';
 import 'package:multi_trendzz/presentation/auth_screens/forget_password/reset_password_screen.dart';
 import 'package:multi_trendzz/presentation/auth_screens/forget_password/verify_email_screen.dart';
 import 'package:multi_trendzz/presentation/auth_screens/forget_password/verify_otp_screen.dart';
 import 'package:multi_trendzz/presentation/bottom_nav_bar_screens/chat/chat_detail_screen.dart';
 import 'package:multi_trendzz/presentation/bottom_nav_bar_screens/chat/chat_list_screen.dart';
+import 'package:multi_trendzz/presentation/bottom_nav_bar_screens/chat_screen/chat_screen.dart';
 import 'package:multi_trendzz/presentation/bottom_nav_bar_screens/coupon/coupon_screen.dart';
 import 'package:multi_trendzz/presentation/bottom_nav_bar_screens/my_order/my_order_screen.dart';
 import 'package:multi_trendzz/presentation/bottom_nav_bar_screens/my_order/track_order_screen.dart';
@@ -37,9 +41,17 @@ import 'package:multi_trendzz/presentation/seller/inventory/inventory_screen.dar
 import 'package:multi_trendzz/presentation/seller/notification/notification_screen.dart';
 import 'package:multi_trendzz/presentation/seller/order/order_detail_screen.dart';
 import 'package:multi_trendzz/presentation/seller/order/order_screen.dart';
-import 'package:multi_trendzz/presentation/seller/products/add_product_screen/add_product_screen.dart';
-import 'package:multi_trendzz/presentation/seller/products/my_product_screen.dart';
+import 'package:multi_trendzz/presentation/seller/products/screens/add_product/add_product_screen.dart';
+import 'package:multi_trendzz/presentation/seller/products/screens/edit_product/edit_product_screen.dart';
+import 'package:multi_trendzz/presentation/seller/products/screens/seller_product_screen.dart';
 import 'package:multi_trendzz/presentation/seller/root/seller_root_screen.dart';
+import 'package:multi_trendzz/presentation/seller/settings/screens/bank_account_screen.dart';
+import 'package:multi_trendzz/presentation/seller/settings/screens/business_information_screen.dart';
+import 'package:multi_trendzz/presentation/seller/settings/screens/notification_settings_screen.dart';
+import 'package:multi_trendzz/presentation/seller/settings/screens/security_screen.dart';
+import 'package:multi_trendzz/presentation/seller/settings/screens/seller_profile_screen.dart';
+import 'package:multi_trendzz/presentation/seller/settings/screens/settings_screen.dart';
+import 'package:multi_trendzz/presentation/seller/settings/screens/tax_settings_screen.dart';
 import 'package:multi_trendzz/presentation/seller/shipping/shopping_detail_screen.dart';
 import 'package:multi_trendzz/presentation/seller/shipping/shopping_screen.dart';
 import 'package:multi_trendzz/presentation/seller/wallet/seller_wallet_screen.dart';
@@ -51,7 +63,7 @@ import 'package:go_router/go_router.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: AppRoutes.sellerCouponScreen,
+    initialLocation: AppRoutes.sellerRootScreen,
     routes: [
       GoRoute(
         path: AppRoutes.splashScreen,
@@ -215,13 +227,21 @@ class AppRouter {
       ),
 
       GoRoute(
-        path: AppRoutes.myProductScreen,
-        builder: (context, state) => const MyProductsScreen(),
+        path: AppRoutes.sellerProductScreen,
+        builder: (context, state) => const SellerProductScreen(),
       ),
 
       GoRoute(
         path: AppRoutes.addProductScreen,
         builder: (context, state) => const AddProductScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.sellerProductDetailScreen,
+        builder: (context, state) => const ProductDetailScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.editProductScreen,
+        builder: (context, state) => const EditProductScreen(),
       ),
 
       GoRoute(
@@ -289,6 +309,86 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.createCouponScreen,
         builder: (context, state) => const CreateCouponScreen(),
+      ),
+
+
+
+
+      ///Settings Screen Routers
+      GoRoute(
+        path: AppRoutes.settingsScreen,
+        builder: (context, state) => const SettingsScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.bankAccountScreen,
+        builder: (context, state) => const BankAccountScreen(),
+      ),
+
+      GoRoute(
+        path: AppRoutes.sellerProfileScreen,
+        builder: (context, state) => const SellerProfileScreen(),
+      ),
+
+      GoRoute(
+        path: AppRoutes.businessInformationScreen,
+        builder: (context, state) => const BusinessInformationScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.notificationSettingsScreen,
+        builder: (context, state) => const NotificationSettingsScreen(),
+      ),
+
+
+      GoRoute(
+        path: AppRoutes.securityScreen,
+        builder: (context, state) => const SecurityScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.taxSettingsScreen,
+        builder: (context, state) => const TaxSettingsScreen(),
+      ),
+
+
+
+      GoRoute(
+        path: AppRoutes.sellerChatListScreen,
+        builder: (context, state) => const SellerChatListScreen(),
+      ),
+
+      // builder: (context ,state){
+      //   final String email = state.extra?.toString() ?? '';
+      //   return ResetPasswordScreen(email: email);
+      // }
+
+      GoRoute(
+        path: AppRoutes.sellerChatScreen,
+        builder: (context, state) {
+
+          final data = state.extra as Map<String, dynamic>;
+
+          final String name = data['name'] ?? '';
+
+          final String imageUrl = data['imageUrl'] ?? '';
+
+          final bool isOnline = data['isOnline'] ?? false;
+
+
+          return SellerChatScreen(
+
+            name: name,
+
+            imageUrl: imageUrl,
+
+            isOnline: isOnline,
+
+          );
+
+        },
+      ),
+
+      GoRoute(
+        path: AppRoutes.adminDashboardScreen,
+        builder: (context, state) => const AdminDashboardScreen(),
       ),
     ],
   );

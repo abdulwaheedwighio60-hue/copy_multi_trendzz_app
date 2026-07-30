@@ -37,8 +37,14 @@ class AppRoutes {
 
   ///Seller Routes Screen
   static const String sellerRootScreen = "/seller-root-screen";
-  static const String myProductScreen = "/my-product-screen";
+
+
+  static const String sellerProductScreen = "/seller-product-screen";
   static const String addProductScreen = "/add-product-screen";
+  static const String sellerProductDetailScreen = "/seller-product-detail-screen";
+  static const String editProductScreen = "/edit-product-screen";
+
+
   static const String orderScreen = "/order-screen";
   static const String orderDetailScreen = "/order-detail-screen";
   static const String analyticsScreen = "/analytics-screen";
@@ -54,4 +60,21 @@ class AppRoutes {
   static const String sellerCouponDetailScreen = "/seller-coupon-detail-screen";
   static const String createCouponScreen = "/create-coupon-screen";
 
+
+  static const String settingsScreen = "/settings-screen";
+  static const String sellerProfileScreen = "/seller-profile-screen";
+  static const String bankAccountScreen = "/bank-account-screen";
+  static const String businessInformationScreen = "/business-info-screen";
+  static const String notificationSettingsScreen = "/notification-settings-screen";
+  static const String securityScreen = "/security-screen";
+  static const String shippingSettingScreen = "/shipping-setting-screen";
+  static const String taxSettingsScreen = "/tax-settings-screen";
+
+
+
+  ///CHat Screens Routes
+  static const String sellerChatListScreen = "/seller-chat-list-screen";
+  static const String sellerChatScreen = "/seller-chat-screen";
+
+  static const String adminDashboardScreen = "/admin-dashboard-screen";
 }

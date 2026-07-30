@@ -58,9 +58,10 @@ class CustomTextFormFieldWidget extends StatelessWidget {
       onTap: onTap,
       inputFormatters: inputFormatters, // 👈 Add this
       style: TextStyle(
-        color: Colors.black87,
+        // color: Colors.black87,
         fontSize: 14.sp,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w400,
+        letterSpacing: 0.2,
       ),
       decoration: InputDecoration(
         filled: true,

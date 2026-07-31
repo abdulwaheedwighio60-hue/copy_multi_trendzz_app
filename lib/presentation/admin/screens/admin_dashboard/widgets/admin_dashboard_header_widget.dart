@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:multi_trendzz/core/constants/app_colors.dart';
 
-class DashboardHeaderWidget extends StatelessWidget {
-  const DashboardHeaderWidget({super.key, });
+class AdminDashboardHeaderWidget extends StatelessWidget {
+  final VoidCallback? onMenuTap;
+  const AdminDashboardHeaderWidget({super.key, this.onMenuTap});
 
   @override
   Widget build(BuildContext context) {
@@ -29,33 +30,56 @@ class DashboardHeaderWidget extends StatelessWidget {
       child: Row(
         children: [
 
-          /// SEARCH
-          _buildSearchBox(isDesktop, isTablet),
+          /// Mobile Menu
+          if (isMobile)
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: InkWell(
+                onTap: onMenuTap,
+                borderRadius: BorderRadius.circular(8),
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: const Color(0xffF7F7F8),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Icon(
+                    Icons.menu,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
+            ),
 
-          const Spacer(),
+          /// Search
+          Expanded(
+            child: _buildSearchBox(
+              isDesktop,
+              isTablet,
+            ),
+          ),
 
-          /// CREATE BUTTON
-          _buildCreateButton(isMobile),
+          const SizedBox(width: 12),
 
-          SizedBox(width: isDesktop ? 22 : 12),
+          if (!isMobile) _buildCreateButton(false),
 
-          /// NOTIFICATION
+          SizedBox(width: isDesktop ? 18 : 10),
+
           _buildIconButton(
             Icons.notifications_none,
                 () {},
           ),
 
-          SizedBox(width: isDesktop ? 18 : 10),
+          SizedBox(width: isDesktop ? 12 : 8),
 
-          /// EDIT
           _buildIconButton(
             Icons.edit_outlined,
                 () {},
           ),
 
-          SizedBox(width: isDesktop ? 20 : 12),
+          SizedBox(width: isDesktop ? 18 : 10),
 
-          /// PROFILE
           CircleAvatar(
             backgroundColor: AppColors.primaryColor,
             radius: isDesktop ? 18 : 16,
@@ -72,47 +96,29 @@ class DashboardHeaderWidget extends StatelessWidget {
       bool isDesktop,
       bool isTablet,
       ) {
-
     return Container(
-      width: isDesktop
-          ? 370
-          : isTablet
-          ? 300
-          : 180,
-
       height: 42,
-
       decoration: BoxDecoration(
         color: const Color(0xffF7F7F8),
         borderRadius: BorderRadius.circular(10),
       ),
-
       child: TextField(
-
         style: TextStyle(
           fontSize: isDesktop ? 13 : 12,
         ),
-
-        decoration: InputDecoration(
-
+        decoration: const InputDecoration(
           hintText: "Search or type a command",
-
-          hintStyle: const TextStyle(
+          hintStyle: TextStyle(
             color: Color(0xff8B8B8B),
             fontSize: 13,
           ),
-
-          prefixIcon: const Icon(
+          prefixIcon: Icon(
             Icons.search,
             size: 20,
             color: Colors.black54,
           ),
-
           border: InputBorder.none,
-
-          contentPadding: const EdgeInsets.only(
-            top: 12,
-          ),
+          contentPadding: EdgeInsets.only(top: 12),
         ),
       ),
     );

@@ -63,7 +63,7 @@ import 'package:go_router/go_router.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: AppRoutes.sellerRootScreen,
+    initialLocation: AppRoutes.adminDashboardScreen,
     routes: [
       GoRoute(
         path: AppRoutes.splashScreen,
@@ -363,29 +363,17 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.sellerChatScreen,
         builder: (context, state) {
-
           final data = state.extra as Map<String, dynamic>;
-
           final String name = data['name'] ?? '';
-
           final String imageUrl = data['imageUrl'] ?? '';
-
           final bool isOnline = data['isOnline'] ?? false;
-
-
           return SellerChatScreen(
-
             name: name,
-
             imageUrl: imageUrl,
-
             isOnline: isOnline,
-
           );
-
         },
       ),
-
       GoRoute(
         path: AppRoutes.adminDashboardScreen,
         builder: (context, state) => const AdminDashboardScreen(),

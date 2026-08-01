@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multi_trendzz/core/constants/app_colors.dart';
+import 'package:multi_trendzz/core/widgets/responsive_dialog_button.dart';
 
 class AddSellerDialog extends StatefulWidget {
   final VoidCallback? onSave;
@@ -39,7 +40,11 @@ class _AddSellerDialogState extends State<AddSellerDialog> {
     final bool isDesktop = width >= 1100;
     final bool isTablet = width >= 700 && width < 1100;
     final bool isMobile = width < 700;
-
+    final double fontSize = isDesktop
+        ? 15
+        : isTablet
+        ? 14
+        : 13;
     return Dialog(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -281,41 +286,78 @@ class _AddSellerDialogState extends State<AddSellerDialog> {
 
     const SizedBox(height: 18),
 
-    DropdownButtonFormField<String>(
+      DropdownButtonFormField<String>(
+        value: selectedStatus,
 
-    value: selectedStatus,
+        isExpanded: true,
 
-    decoration: _inputDecoration(
+        icon: Icon(
+          Icons.keyboard_arrow_down_rounded,
+          size: isDesktop ? 24 : isTablet ? 22 : 20,
+        ),
 
-    "Status",
+        style: TextStyle(
+          fontSize: fontSize,
+          color: Colors.black87,
+          fontWeight: FontWeight.w500,
+        ),
 
-    Icons.toggle_on_outlined,
+        decoration: InputDecoration(
+          prefixIcon: Icon(
+            Icons.toggle_on_outlined,
+            size: isDesktop ? 22 : 20,
+            color: Colors.grey.shade600,
+          ),
 
-    ),
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: isDesktop ? 18 : 16,
+            vertical: isDesktop ? 18 : 15,
+          ),
 
-    items: statusList.map((status) {
+          filled: true,
+          fillColor: Colors.white,
 
-    return DropdownMenuItem(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(
+              color: Colors.grey.shade300,
+            ),
+          ),
 
-    value: status,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(
+              color: Colors.grey.shade300,
+            ),
+          ),
 
-    child: Text(status),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(
+              color: AppColors.primaryColor,
+              width: 1.5,
+            ),
+          ),
+        ),
 
-    );
+        items: statusList.map((status) {
+          return DropdownMenuItem<String>(
+            value: status,
+            child: Text(
+              status,
+              style: TextStyle(
+                fontSize: fontSize,
+              ),
+            ),
+          );
+        }).toList(),
 
-    }).toList(),
-
-    onChanged: (value) {
-
-    setState(() {
-
-    selectedStatus = value!;
-
-    });
-
-    },
-
-    ),
+        onChanged: (value) {
+          setState(() {
+            selectedStatus = value!;
+          });
+        },
+      ),
 
     const SizedBox(height: 28),
 
@@ -392,62 +434,27 @@ class _AddSellerDialogState extends State<AddSellerDialog> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
 
-          OutlinedButton(
+          ResponsiveDialogButton(
+            text: "Cancel",
+            isPrimary: false,
+            icon: Icons.close,
             onPressed: () {
               Navigator.pop(context);
             },
-            style: OutlinedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24,
-                vertical: 15,
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(14),
-              ),
-              side: BorderSide(
-                color: Colors.grey.shade300,
-              ),
-            ),
-            child: const Text("Cancel"),
           ),
 
-          const SizedBox(width: 14),
-
-          ElevatedButton.icon(
+          ResponsiveDialogButton(
+            text: "Update",
+            backgroundColor: AppColors.primaryColor,
+            icon: Icons.edit,
             onPressed: () {
 
-              if (formKey.currentState!.validate()) {
+              /// Update API
 
-                widget.onSave?.call();
-
-                Navigator.pop(context);
-
-              }
+              Navigator.pop(context);
 
             },
-            icon: const Icon(
-              Icons.save,
-              color: Colors.white,
-            ),
-            label: const Text(
-              "Save Seller",
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-            style: ElevatedButton.styleFrom(
-              elevation: 0,
-              backgroundColor: AppColors.primaryColor,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 28,
-                vertical: 16,
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(14),
-              ),
-            ),
           ),
-
         ],
       ),
 

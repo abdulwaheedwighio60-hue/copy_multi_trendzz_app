@@ -1,8 +1,120 @@
 import 'package:flutter/material.dart';
 import 'package:multi_trendzz/core/constants/app_colors.dart';
+import 'package:multi_trendzz/presentation/admin/screens/seller/dialog/seller_block_dialog.dart';
+import 'package:multi_trendzz/presentation/admin/screens/seller/dialog/seller_delete_dialog.dart';
+import 'package:multi_trendzz/presentation/admin/screens/seller/dialog/seller_edit_dialog.dart';
+import 'package:multi_trendzz/presentation/admin/screens/seller/dialog/seller_view_dialog.dart';
+import 'package:multi_trendzz/presentation/admin/screens/seller/model/seller_category_model.dart';
 
-class SellerTableWidget extends StatelessWidget {
+class SellerTableWidget extends StatefulWidget {
   const SellerTableWidget({super.key});
+
+  @override
+  State<SellerTableWidget> createState() => _SellerTableWidgetState();
+}
+
+class _SellerTableWidgetState extends State<SellerTableWidget> {
+
+
+  List<SellerCategoryModel> dummyCategories = [
+
+    SellerCategoryModel(
+      id: "CAT001",
+      image: "https://picsum.photos/200?1",
+      categoryName: "Electronics",
+      slug: "electronics",
+      description: "Mobiles, Laptops, Smart Watches & Accessories.",
+      totalProducts: 240,
+      totalSales: 5200,
+      active: true,
+      createdDate: "10 Jan 2026",
+    ),
+
+    SellerCategoryModel(
+      id: "CAT002",
+      image: "https://picsum.photos/200?2",
+      categoryName: "Fashion",
+      slug: "fashion",
+      description: "Men, Women & Kids Clothing Collection.",
+      totalProducts: 180,
+      totalSales: 3100,
+      active: true,
+      createdDate: "18 Jan 2026",
+    ),
+
+    SellerCategoryModel(
+      id: "CAT003",
+      image: "https://picsum.photos/200?3",
+      categoryName: "Home & Kitchen",
+      slug: "home-kitchen",
+      description: "Furniture, Kitchen & Home Essentials.",
+      totalProducts: 145,
+      totalSales: 2200,
+      active: true,
+      createdDate: "28 Jan 2026",
+    ),
+
+    SellerCategoryModel(
+      id: "CAT004",
+      image: "https://picsum.photos/200?4",
+      categoryName: "Beauty",
+      slug: "beauty",
+      description: "Cosmetics, Makeup & Skincare Products.",
+      totalProducts: 95,
+      totalSales: 1500,
+      active: true,
+      createdDate: "05 Feb 2026",
+    ),
+
+    SellerCategoryModel(
+      id: "CAT005",
+      image: "https://picsum.photos/200?5",
+      categoryName: "Sports",
+      slug: "sports",
+      description: "Sports Equipment & Fitness Accessories.",
+      totalProducts: 88,
+      totalSales: 1240,
+      active: false,
+      createdDate: "12 Feb 2026",
+    ),
+
+    SellerCategoryModel(
+      id: "CAT006",
+      image: "https://picsum.photos/200?6",
+      categoryName: "Books",
+      slug: "books",
+      description: "Educational & Story Books.",
+      totalProducts: 210,
+      totalSales: 4100,
+      active: true,
+      createdDate: "20 Feb 2026",
+    ),
+
+    SellerCategoryModel(
+      id: "CAT007",
+      image: "https://picsum.photos/200?7",
+      categoryName: "Furniture",
+      slug: "furniture",
+      description: "Modern Office & Home Furniture.",
+      totalProducts: 72,
+      totalSales: 980,
+      active: true,
+      createdDate: "02 Mar 2026",
+    ),
+
+    SellerCategoryModel(
+      id: "CAT008",
+      image: "https://picsum.photos/200?8",
+      categoryName: "Toys",
+      slug: "toys",
+      description: "Kids Educational & Fun Toys.",
+      totalProducts: 110,
+      totalSales: 1750,
+      active: false,
+      createdDate: "15 Mar 2026",
+    ),
+
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -102,132 +214,96 @@ class SellerTableWidget extends StatelessWidget {
             children: [
 
               _mobileSellerCard(
-                image: "https://i.pravatar.cc/150?img=12",
-                seller: "Ahmed Ali",
-                store: "Tech World",
-                email: "ahmed@gmail.com",
-                phone: "+92 3001234567",
-                orders: "152",
-                sales: "Rs 245K",
-                status: "Active",
-                  context: context
+                context: context,
+                seller: dummyCategories[0],
               ),
 
               const SizedBox(height: 15),
 
               _mobileSellerCard(
-                image: "https://i.pravatar.cc/150?img=22",
-                seller: "Ali Khan",
-                store: "Fashion Hub",
-                email: "ali@gmail.com",
-                phone: "+92 3019876543",
-                orders: "95",
-                sales: "Rs 120K",
-                status: "Pending",
-                  context: context
+                context: context,
+                seller: dummyCategories[1],
               ),
 
               const SizedBox(height: 15),
 
               _mobileSellerCard(
-                image: "https://i.pravatar.cc/150?img=32",
-                seller: "Sara Ahmed",
-                store: "Beauty Store",
-                email: "sara@gmail.com",
-                phone: "+92 3345678901",
-                orders: "210",
-                sales: "Rs 560K",
-                status: "Blocked",
-                context: context
+                context: context,
+                seller: dummyCategories[2],
               ),
+              const SizedBox(height: 15),
+
+              _mobileSellerCard(
+                context: context,
+                seller: dummyCategories[3],
+              ),
+              const SizedBox(height: 15),
+
+              _mobileSellerCard(
+                context: context,
+                seller: dummyCategories[4],
+              ),
+              const SizedBox(height: 15),
+
+              _mobileSellerCard(
+                context: context,
+                seller: dummyCategories[5],
+              ),const SizedBox(height: 15),
+
+              _mobileSellerCard(
+                context: context,
+                seller: dummyCategories[6],
+              ),const SizedBox(height: 15),
+
+              _mobileSellerCard(
+                context: context,
+                seller: dummyCategories[7],
+              ),
+
 
             ],
           )
 
               : SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: DataTable(
-              columnSpacing: isDesktop ? 38 : 25,
-              horizontalMargin: 18,
-              headingRowHeight: 58,
-              dataRowMinHeight: 72,
-              dataRowMaxHeight: 76,
+            child: SizedBox(
+              height: 400, // 5 rows approx
+              child: SingleChildScrollView(
+                child: DataTable(
+                  columnSpacing: isDesktop ? 38 : 25,
+                  horizontalMargin: 18,
+                  headingRowHeight: 58,
+                  dataRowMinHeight: 72,
+                  dataRowMaxHeight: 76,
 
-              headingTextStyle: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: isDesktop ? 15 : 14,
+                  columns: const [
+                    DataColumn(label: Text("Category")),
+                    DataColumn(label: Text("Slug")),
+                    DataColumn(label: Text("Products")),
+                    DataColumn(label: Text("Sales")),
+                    DataColumn(label: Text("Created")),
+                    DataColumn(label: Text("Status")),
+                    DataColumn(label: Text("Actions")),
+                  ],
+
+                  rows: dummyCategories.map((seller) {
+                    return _sellerRow(
+                      context: context,
+                      seller: seller,
+                    );
+                  }).toList(),
+                ),
               ),
-
-              columns: const [
-
-                DataColumn(label: Text("Seller")),
-                DataColumn(label: Text("Store")),
-                DataColumn(label: Text("Email")),
-                DataColumn(label: Text("Phone")),
-                DataColumn(label: Text("Orders")),
-                DataColumn(label: Text("Sales")),
-                DataColumn(label: Text("Status")),
-                DataColumn(label: Text("Actions")),
-
-              ],
-
-              rows: [
-
-                _sellerRow(
-                  image:"https://i.pravatar.cc/150?img=12",
-                  seller:"Ahmed Ali",
-                  store:"Tech World",
-                  email:"ahmed@gmail.com",
-                  phone:"+92 3001234567",
-                  orders:"152",
-                  sales:"Rs 245K",
-                  status:"Active",
-                    context: context
-                ),
-
-                _sellerRow(
-                  image:"https://i.pravatar.cc/150?img=22",
-                  seller:"Ali Khan",
-                  store:"Fashion Hub",
-                  email:"ali@gmail.com",
-                  phone:"+92 3019876543",
-                  orders:"95",
-                  sales:"Rs 120K",
-                  status:"Pending",
-                    context: context
-                ),
-
-                _sellerRow(
-                  image:"https://i.pravatar.cc/150?img=32",
-                  seller:"Sara Ahmed",
-                  store:"Beauty Store",
-                  email:"sara@gmail.com",
-                  phone:"+92 3345678901",
-                  orders:"210",
-                  sales:"Rs 560K",
-                  status:"Blocked",
-                  context: context
-                ),
-
-              ],
             ),
-          ),
+          )
         ],
       ),
     );
   }
 
-
   Widget _mobileSellerCard({
     required BuildContext context,
-    required String image,
-    required String seller,
-    required String store,
-    required String email,
-    required String phone,
-    required String orders,
-    required String sales,
-    required String status,
+    required SellerCategoryModel seller,
   }) {
     final width = MediaQuery.of(context).size.width;
 
@@ -260,17 +336,19 @@ class SellerTableWidget extends StatelessWidget {
             color: Colors.black.withOpacity(.04),
             blurRadius: 10,
             offset: const Offset(0, 4),
-          )
+          ),
         ],
       ),
       child: Column(
         children: [
+
           /// Top Section
           Row(
             children: [
+
               CircleAvatar(
                 radius: isMobile ? 24 : 28,
-                backgroundImage: NetworkImage(image),
+                backgroundImage: NetworkImage(seller.image),
               ),
 
               SizedBox(width: isMobile ? 10 : 14),
@@ -279,16 +357,13 @@ class SellerTableWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+
                     Text(
-                      seller,
+                      seller.categoryName,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: isMobile
-                            ? 15
-                            : isTablet
-                            ? 16
-                            : 17,
+                        fontSize: isMobile ? 15 : isTablet ? 16 : 17,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -296,7 +371,7 @@ class SellerTableWidget extends StatelessWidget {
                     SizedBox(height: isMobile ? 2 : 4),
 
                     Text(
-                      store,
+                      seller.slug,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -309,7 +384,7 @@ class SellerTableWidget extends StatelessWidget {
               ),
 
               _statusChip(
-                status,
+                seller.active ? "Active" : "Inactive",
                 rowSize,
               ),
             ],
@@ -317,34 +392,32 @@ class SellerTableWidget extends StatelessWidget {
 
           SizedBox(height: isMobile ? 12 : 16),
 
-          Divider(
-            color: Colors.grey.shade300,
-          ),
+          Divider(color: Colors.grey.shade300),
 
           SizedBox(height: isMobile ? 10 : 14),
 
           _infoRow(
             context,
-            "Email",
-            email,
+            "Category ID",
+            seller.id,
           ),
 
           _infoRow(
             context,
-            "Phone",
-            phone,
-          ),
-
-          _infoRow(
-            context,
-            "Orders",
-            orders,
+            "Products",
+            seller.totalProducts.toString(),
           ),
 
           _infoRow(
             context,
             "Sales",
-            sales,
+            seller.totalSales.toString(),
+          ),
+
+          _infoRow(
+            context,
+            "Created",
+            seller.createdDate,
           ),
 
           SizedBox(height: isMobile ? 14 : 18),
@@ -381,13 +454,14 @@ class SellerTableWidget extends StatelessWidget {
                 Colors.grey,
                 iconSize,
               ),
+
             ],
-          )
+          ),
+
         ],
       ),
     );
   }
-
 
   Widget _infoRow(
       BuildContext context,
@@ -446,14 +520,7 @@ class SellerTableWidget extends StatelessWidget {
 
   DataRow _sellerRow({
     required BuildContext context,
-    required String image,
-    required String seller,
-    required String store,
-    required String email,
-    required String phone,
-    required String orders,
-    required String sales,
-    required String status,
+    required SellerCategoryModel seller,
   }) {
     final width = MediaQuery.of(context).size.width;
 
@@ -481,59 +548,53 @@ class SellerTableWidget extends StatelessWidget {
     return DataRow(
       cells: [
 
-        /// Seller
+        /// Category
         DataCell(
           Row(
             children: [
+
               CircleAvatar(
                 radius: avatarSize,
-                backgroundImage: NetworkImage(image),
+                backgroundImage: NetworkImage(seller.image),
               ),
 
               SizedBox(width: isDesktop ? 12 : 8),
 
-              Text(
-                seller,
-                style: TextStyle(
-                  fontSize: rowSize,
-                  fontWeight: FontWeight.w600,
+              Expanded(
+                child: Text(
+                  seller.categoryName,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: rowSize,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
+
             ],
           ),
         ),
 
+        /// Slug
         DataCell(
           Text(
-            store,
+            seller.slug,
             style: TextStyle(fontSize: rowSize),
           ),
         ),
 
+        /// Products
         DataCell(
           Text(
-            email,
+            seller.totalProducts.toString(),
             style: TextStyle(fontSize: rowSize),
           ),
         ),
 
+        /// Sales
         DataCell(
           Text(
-            phone,
-            style: TextStyle(fontSize: rowSize),
-          ),
-        ),
-
-        DataCell(
-          Text(
-            orders,
-            style: TextStyle(fontSize: rowSize),
-          ),
-        ),
-
-        DataCell(
-          Text(
-            sales,
+            seller.totalSales.toString(),
             style: TextStyle(
               fontSize: rowSize,
               color: Colors.green,
@@ -542,49 +603,85 @@ class SellerTableWidget extends StatelessWidget {
           ),
         ),
 
+        /// Created Date
+        DataCell(
+          Text(
+            seller.createdDate,
+            style: TextStyle(fontSize: rowSize),
+          ),
+        ),
+
+        /// Status
         DataCell(
           _statusChip(
-            status,
+            seller.active ? "Active" : "Inactive",
             rowSize,
           ),
         ),
 
+        /// Actions
         DataCell(
-          Row(
-            children: [
+            Row(
+              children: [
 
-              _actionButton(
-                Icons.visibility_outlined,
-                Colors.blue,
-                iconSize,
-              ),
+                _actionButton(
+                  Icons.visibility_outlined,
+                  Colors.blue,
+                  iconSize,
+                  onTap: () {
+                    SellerViewDialog.show(
+                      context,
+                      seller,
+                    );
+                  },
+                ),
 
-              SizedBox(width: isDesktop ? 8 : 6),
+                SizedBox(width: isDesktop ? 8 : 6),
 
-              _actionButton(
-                Icons.edit_outlined,
-                Colors.orange,
-                iconSize,
-              ),
+                _actionButton(
+                  Icons.edit_outlined,
+                  Colors.orange,
+                  iconSize,
+                  onTap: () {
+                    SellerEditDialog.show(
+                      context,
+                      seller,
+                    );
+                  },
+                ),
 
-              SizedBox(width: isDesktop ? 8 : 6),
+                SizedBox(width: isDesktop ? 8 : 6),
 
-              _actionButton(
-                Icons.block,
-                Colors.red,
-                iconSize,
-              ),
+                _actionButton(
+                  Icons.block_outlined,
+                  Colors.red,
+                  iconSize,
+                  onTap: () {
+                    SellerBlockDialog.show(
+                      context,
+                      seller,
+                    );
+                  },
+                ),
 
-              SizedBox(width: isDesktop ? 8 : 6),
+                SizedBox(width: isDesktop ? 8 : 6),
 
-              _actionButton(
-                Icons.delete_outline,
-                Colors.grey,
-                iconSize,
-              ),
-            ],
-          ),
+                _actionButton(
+                  Icons.delete_outline,
+                  Colors.grey,
+                  iconSize,
+                  onTap: () {
+                    SellerDeleteDialog.show(
+                      context,
+                      seller,
+                    );
+                  },
+                ),
+
+              ],
+            )
         ),
+
       ],
     );
   }
@@ -631,10 +728,11 @@ class SellerTableWidget extends StatelessWidget {
   Widget _actionButton(
       IconData icon,
       Color color,
-      double iconSize,
-      ) {
+      double iconSize, {
+        VoidCallback? onTap,
+      }) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       borderRadius: BorderRadius.circular(8),
       child: Container(
         width: iconSize + 16,

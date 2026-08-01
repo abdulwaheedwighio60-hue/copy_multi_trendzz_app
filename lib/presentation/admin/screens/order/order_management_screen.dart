@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:multi_trendzz/presentation/admin/screens/admin_dashboard/widgets/admin_dashboard_header_widget.dart';
 import 'package:multi_trendzz/presentation/admin/screens/admin_dashboard/widgets/admin_footer_widget.dart';
 import 'package:multi_trendzz/presentation/admin/screens/admin_dashboard/widgets/admin_side_bar_widget.dart';
+import 'package:multi_trendzz/presentation/admin/screens/order/widgets/order_filter_widget.dart';
+import 'package:multi_trendzz/presentation/admin/screens/order/widgets/order_header_widget.dart';
+import 'package:multi_trendzz/presentation/admin/screens/order/widgets/order_statistics_widget.dart';
+import 'package:multi_trendzz/presentation/admin/screens/order/widgets/order_table_widget.dart';
 import 'package:multi_trendzz/presentation/admin/screens/product/widgets/product_header_widget.dart';
 import 'package:multi_trendzz/presentation/admin/screens/product/widgets/product_statistics_widget.dart';
 import 'package:multi_trendzz/presentation/admin/screens/product/widgets/product_table_widget.dart';
@@ -11,16 +15,16 @@ import 'package:multi_trendzz/presentation/admin/screens/seller/widgets/seller_s
 
 
 
-class ProductManagementScreen extends StatefulWidget {
+class OrderManagementScreen extends StatefulWidget {
 
-  const ProductManagementScreen({
+  const OrderManagementScreen({
     super.key,
   });
 
   @override
-  State<ProductManagementScreen> createState() => _ProductManagementScreenState();
+  State<OrderManagementScreen> createState() => _OrderManagementScreenState();
 }
-class _ProductManagementScreenState extends State<ProductManagementScreen> {
+class _OrderManagementScreenState extends State<OrderManagementScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -60,38 +64,38 @@ class _ProductManagementScreenState extends State<ProductManagementScreen> {
                       child:Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const ProductHeaderWidget(),
+                          const OrderHeaderWidget(),
                           const SizedBox(height:25),
-                          const ProductStatisticsWidget(),
+                          const OrderStatisticsWidget(),
                           const SizedBox(height:25),
-                          SellerSearchFilterWidget(
-                            onSearchChanged:(value){
-                              debugPrint("Search : $value");
-                            },
-                            onStatusChanged:(value){
-                              debugPrint("Status : $value");
-
-                            },
-                            onStoreChanged:(value){
-                              debugPrint(
-                                  "Store : $value"
-                              );
-                            },
-                            onAddSeller:(){
-                              showDialog(
-                                context:context,
-                                builder:(context){
-                                  return AddSellerDialog(
-                                    onSave:(){
-                                      debugPrint("Seller Added");
-                                    },
-                                  );
-                                },
-                              );
-                            },
+                          OrderFilterWidget(
+                            // onSearchChanged:(value){
+                            //   debugPrint("Search : $value");
+                            // },
+                            // onStatusChanged:(value){
+                            //   debugPrint("Status : $value");
+                            //
+                            // },
+                            // onStoreChanged:(value){
+                            //   debugPrint(
+                            //       "Store : $value"
+                            //   );
+                            // },
+                            // onAddSeller:(){
+                            //   showDialog(
+                            //     context:context,
+                            //     builder:(context){
+                            //       return AddSellerDialog(
+                            //         onSave:(){
+                            //           debugPrint("Seller Added");
+                            //         },
+                            //       );
+                            //     },
+                            //   );
+                            // },
                           ),
                           const SizedBox(height:25),
-                          const ProductTableWidget(),
+                          const OrderTableWidget(),
                           // const SellerTableWidget(),
                           const SizedBox(height:20),
                           SellerPaginationWidget(

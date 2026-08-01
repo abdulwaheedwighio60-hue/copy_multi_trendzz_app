@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:multi_trendzz/presentation/admin/screens/admin_dashboard/widgets/admin_dashboard_header_widget.dart';
 import 'package:multi_trendzz/presentation/admin/screens/admin_dashboard/widgets/admin_footer_widget.dart';
 import 'package:multi_trendzz/presentation/admin/screens/admin_dashboard/widgets/admin_side_bar_widget.dart';
+import 'package:multi_trendzz/presentation/admin/screens/category/widget/category_header_widget.dart';
+import 'package:multi_trendzz/presentation/admin/screens/category/widget/category_search_filter_widget.dart';
+import 'package:multi_trendzz/presentation/admin/screens/category/widget/category_statistics_widget.dart';
+import 'package:multi_trendzz/presentation/admin/screens/category/widget/category_table_widget.dart';
 import 'package:multi_trendzz/presentation/admin/screens/product/widgets/product_header_widget.dart';
 import 'package:multi_trendzz/presentation/admin/screens/product/widgets/product_statistics_widget.dart';
 import 'package:multi_trendzz/presentation/admin/screens/product/widgets/product_table_widget.dart';
@@ -11,16 +15,16 @@ import 'package:multi_trendzz/presentation/admin/screens/seller/widgets/seller_s
 
 
 
-class ProductManagementScreen extends StatefulWidget {
+class CategoryManagementScreen extends StatefulWidget {
 
-  const ProductManagementScreen({
+  const CategoryManagementScreen({
     super.key,
   });
 
   @override
-  State<ProductManagementScreen> createState() => _ProductManagementScreenState();
+  State<CategoryManagementScreen> createState() => _CategoryManagementScreenState();
 }
-class _ProductManagementScreenState extends State<ProductManagementScreen> {
+class _CategoryManagementScreenState extends State<CategoryManagementScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -60,11 +64,11 @@ class _ProductManagementScreenState extends State<ProductManagementScreen> {
                       child:Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const ProductHeaderWidget(),
+                          const CategoryHeaderWidget(),
                           const SizedBox(height:25),
-                          const ProductStatisticsWidget(),
+                          const CategoryStatisticsWidget(),
                           const SizedBox(height:25),
-                          SellerSearchFilterWidget(
+                          CategorySearchFilterWidget(
                             onSearchChanged:(value){
                               debugPrint("Search : $value");
                             },
@@ -72,26 +76,26 @@ class _ProductManagementScreenState extends State<ProductManagementScreen> {
                               debugPrint("Status : $value");
 
                             },
-                            onStoreChanged:(value){
-                              debugPrint(
-                                  "Store : $value"
-                              );
-                            },
-                            onAddSeller:(){
-                              showDialog(
-                                context:context,
-                                builder:(context){
-                                  return AddSellerDialog(
-                                    onSave:(){
-                                      debugPrint("Seller Added");
-                                    },
-                                  );
-                                },
-                              );
-                            },
+                            // onStoreChanged:(value){
+                            //   debugPrint(
+                            //       "Store : $value"
+                            //   );
+                            // },
+                            // onAddSeller:(){
+                            //   showDialog(
+                            //     context:context,
+                            //     builder:(context){
+                            //       return AddSellerDialog(
+                            //         onSave:(){
+                            //           debugPrint("Seller Added");
+                            //         },
+                            //       );
+                            //     },
+                            //   );
+                            // },
                           ),
                           const SizedBox(height:25),
-                          const ProductTableWidget(),
+                          const CategoryTableWidget(),
                           // const SellerTableWidget(),
                           const SizedBox(height:20),
                           SellerPaginationWidget(

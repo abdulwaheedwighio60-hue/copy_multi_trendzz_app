@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:multi_trendzz/presentation/admin/screens/admin_dashboard/widgets/admin_dashboard_header_widget.dart';
 import 'package:multi_trendzz/presentation/admin/screens/admin_dashboard/widgets/admin_footer_widget.dart';
 import 'package:multi_trendzz/presentation/admin/screens/admin_dashboard/widgets/admin_side_bar_widget.dart';
+import 'package:multi_trendzz/presentation/admin/screens/customer/widgets/customer_filter_widget.dart';
+import 'package:multi_trendzz/presentation/admin/screens/customer/widgets/customer_header_widget.dart';
+import 'package:multi_trendzz/presentation/admin/screens/customer/widgets/customer_statistics_widget.dart';
+import 'package:multi_trendzz/presentation/admin/screens/customer/widgets/customer_table_widget.dart';
 import 'package:multi_trendzz/presentation/admin/screens/product/widgets/product_header_widget.dart';
 import 'package:multi_trendzz/presentation/admin/screens/product/widgets/product_statistics_widget.dart';
 import 'package:multi_trendzz/presentation/admin/screens/product/widgets/product_table_widget.dart';
@@ -11,16 +15,16 @@ import 'package:multi_trendzz/presentation/admin/screens/seller/widgets/seller_s
 
 
 
-class ProductManagementScreen extends StatefulWidget {
+class CustomerManagementScreen extends StatefulWidget {
 
-  const ProductManagementScreen({
+  const CustomerManagementScreen({
     super.key,
   });
 
   @override
-  State<ProductManagementScreen> createState() => _ProductManagementScreenState();
+  State<CustomerManagementScreen> createState() => _CustomerManagementScreenState();
 }
-class _ProductManagementScreenState extends State<ProductManagementScreen> {
+class _CustomerManagementScreenState extends State<CustomerManagementScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -60,38 +64,14 @@ class _ProductManagementScreenState extends State<ProductManagementScreen> {
                       child:Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const ProductHeaderWidget(),
+                          const CustomerHeaderWidget(),
                           const SizedBox(height:25),
-                          const ProductStatisticsWidget(),
+                          const CustomerStatisticsWidget(),
                           const SizedBox(height:25),
-                          SellerSearchFilterWidget(
-                            onSearchChanged:(value){
-                              debugPrint("Search : $value");
-                            },
-                            onStatusChanged:(value){
-                              debugPrint("Status : $value");
-
-                            },
-                            onStoreChanged:(value){
-                              debugPrint(
-                                  "Store : $value"
-                              );
-                            },
-                            onAddSeller:(){
-                              showDialog(
-                                context:context,
-                                builder:(context){
-                                  return AddSellerDialog(
-                                    onSave:(){
-                                      debugPrint("Seller Added");
-                                    },
-                                  );
-                                },
-                              );
-                            },
+                          CustomerFilterWidget(
                           ),
                           const SizedBox(height:25),
-                          const ProductTableWidget(),
+                          CustomerTableWidget(),
                           // const SellerTableWidget(),
                           const SizedBox(height:20),
                           SellerPaginationWidget(

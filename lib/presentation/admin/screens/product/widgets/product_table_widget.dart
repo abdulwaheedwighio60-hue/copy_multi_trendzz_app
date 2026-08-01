@@ -1,8 +1,230 @@
 import 'package:flutter/material.dart';
 import 'package:multi_trendzz/core/constants/app_colors.dart';
+import 'package:multi_trendzz/presentation/admin/screens/product/dialog/product_block_dialog.dart';
+import 'package:multi_trendzz/presentation/admin/screens/product/dialog/product_delete_dialog.dart';
+import 'package:multi_trendzz/presentation/admin/screens/product/dialog/product_edit_dialog.dart';
+import 'package:multi_trendzz/presentation/admin/screens/product/dialog/product_inventory_dialog.dart';
+import 'package:multi_trendzz/presentation/admin/screens/product/dialog/product_view_dialog.dart';
+import 'package:multi_trendzz/presentation/admin/screens/product/model/dummy_product.dart';
+import 'package:multi_trendzz/presentation/admin/screens/product/model/product_model.dart';
 
-class ProductTableWidget extends StatelessWidget {
+class ProductTableWidget extends StatefulWidget {
   const ProductTableWidget({super.key});
+
+  @override
+  State<ProductTableWidget> createState() => _ProductTableWidgetState();
+}
+
+class _ProductTableWidgetState extends State<ProductTableWidget> {
+
+  static List<ProductModel> products = [
+
+
+
+    ProductModel(
+
+      id: "P001",
+
+      image:
+      "https://i.pravatar.cc/150?img=12",
+
+      productName:
+      "iPhone 16 Pro",
+
+      category:
+      "Mobile",
+
+      seller:
+      "Tech Store",
+
+      store:
+      "Tech Store PK",
+
+      email:
+      "techstore@gmail.com",
+
+      phone:
+      "03001234567",
+
+      price:
+      "Rs 250,000",
+
+      stock:
+      25,
+
+      orders:
+      120,
+
+      sales:
+      "Rs 30,00,000",
+
+      description:
+      "Apple iPhone 16 Pro with latest A18 chip and premium camera system.",
+
+      active:
+      true,
+
+      createdDate:
+      "01 Jan 2026",
+
+    ),
+
+
+
+
+    ProductModel(
+
+      id:"P002",
+
+      image:
+      "https://i.pravatar.cc/150?img=18",
+
+      productName:
+      "MacBook Pro M4",
+
+      category:
+      "Laptop",
+
+      seller:
+      "Apple Hub",
+
+      store:
+      "Apple Hub Store",
+
+      email:
+      "applehub@gmail.com",
+
+      phone:
+      "03111234567",
+
+      price:
+      "Rs 380,000",
+
+      stock:
+      15,
+
+      orders:
+      80,
+
+      sales:
+      "Rs 25,00,000",
+
+      description:
+      "MacBook Pro powered by Apple M4 processor.",
+
+      active:
+      true,
+
+      createdDate:
+      "15 Feb 2026",
+
+    ),
+
+
+
+
+    ProductModel(
+
+      id:"P003",
+
+      image:
+      "https://i.pravatar.cc/150?img=25",
+
+      productName:
+      "Apple Watch Ultra",
+
+      category:
+      "Watch",
+
+      seller:
+      "Gadget PK",
+
+      store:
+      "Gadget Store",
+
+      email:
+      "gadgetpk@gmail.com",
+
+      phone:
+      "03221234567",
+
+      price:
+      "Rs 80,000",
+
+      stock:
+      0,
+
+      orders:
+      40,
+
+      sales:
+      "Rs 8,00,000",
+
+      description:
+      "Premium Apple Watch Ultra for sports and fitness.",
+
+      active:
+      false,
+
+      createdDate:
+      "20 March 2026",
+
+    ),
+
+
+
+
+    ProductModel(
+
+      id:"P004",
+
+      image:
+      "https://i.pravatar.cc/150?img=30",
+
+      productName:
+      "Samsung Galaxy S25",
+
+      category:
+      "Mobile",
+
+      seller:
+      "Samsung Store",
+
+      store:
+      "Samsung Official",
+
+      email:
+      "samsung@gmail.com",
+
+      phone:
+      "03331234567",
+
+      price:
+      "Rs 220,000",
+
+      stock:
+      50,
+
+      orders:
+      200,
+
+      sales:
+      "Rs 50,00,000",
+
+      description:
+      "Samsung flagship smartphone with AMOLED display.",
+
+      active:
+      true,
+
+      createdDate:
+      "10 April 2026",
+
+    ),
+
+
+
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -99,46 +321,17 @@ class ProductTableWidget extends StatelessWidget {
 
           isMobile
               ? Column(
-            children: [
+            children: products.map((product) {
 
-              _mobileProductCard(
-                context: context,
-                image: "https://i.pravatar.cc/150?img=12",
-                product: "iPhone 16 Pro",
-                category: "Mobile",
-                seller: "Tech Store",
-                price: "Rs 250,000",
-                stock: "25",
-                status: "Active",
-              ),
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 15),
+                child: _mobileProductCard(
+                  context: context,
+                  product: product,
+                ),
+              );
 
-              const SizedBox(height: 15),
-
-              _mobileProductCard(
-                context: context,
-                image: "https://i.pravatar.cc/150?img=12",
-                product: "iPhone 16 Pro",
-                category: "Mobile",
-                seller: "Tech Store",
-                price: "Rs 250,000",
-                stock: "25",
-                status: "Active",
-              ),
-
-              const SizedBox(height: 15),
-
-              _mobileProductCard(
-                context: context,
-                image: "https://i.pravatar.cc/150?img=12",
-                product: "iPhone 16 Pro",
-                category: "Mobile",
-                seller: "Tech Store",
-                price: "Rs 250,000",
-                stock: "25",
-                status: "Active",
-              ),
-
-            ],
+            }).toList(),
           )
 
               : SingleChildScrollView(
@@ -168,42 +361,14 @@ class ProductTableWidget extends StatelessWidget {
 
               ],
 
-              rows: [
+              rows: products.map((product){
 
-                _productRow(
+                return _productRow(
                   context: context,
-                  image: "https://i.pravatar.cc/150?img=12",
-                  product: "iPhone 16 Pro",
-                  category: "Mobile",
-                  seller: "Tech Store",
-                  price: "Rs 250K",
-                  stock: "25",
-                  status: "Active",
-                ),
+                  productModel: product,
+                );
 
-                _productRow(
-                  context: context,
-                  image: "https://i.pravatar.cc/150?img=18",
-                  product: "MacBook Pro M4",
-                  category: "Laptop",
-                  seller: "Apple Hub",
-                  price: "Rs 380K",
-                  stock: "15",
-                  status: "Active",
-                ),
-
-                _productRow(
-                  context: context,
-                  image: "https://i.pravatar.cc/150?img=25",
-                  product: "Apple Watch Ultra",
-                  category: "Watch",
-                  seller: "Gadget PK",
-                  price: "Rs 80K",
-                  stock: "0",
-                  status: "Out of Stock",
-                ),
-
-              ],
+              }).toList(),
             ),
           ),
         ],
@@ -211,22 +376,17 @@ class ProductTableWidget extends StatelessWidget {
     );
   }
 
-
   Widget _mobileProductCard({
     required BuildContext context,
-    required String image,
-    required String product,
-    required String category,
-    required String seller,
-    required String price,
-    required String stock,
-    required String status,
+    required ProductModel product,
   }) {
+
     final width = MediaQuery.of(context).size.width;
 
     final bool isMobile = width < 700;
     final bool isTablet = width >= 700 && width < 1100;
     final bool isDesktop = width >= 1100;
+
 
     final double iconSize = isDesktop
         ? 18
@@ -234,154 +394,350 @@ class ProductTableWidget extends StatelessWidget {
         ? 17
         : 16;
 
+
     final double rowSize = isDesktop
         ? 14
         : isTablet
         ? 13
         : 12;
 
+
+
     return Container(
+
       padding: EdgeInsets.all(
         isMobile ? 14 : 18,
       ),
+
       decoration: BoxDecoration(
+
         color: Colors.white,
+
         borderRadius: BorderRadius.circular(18),
+
         border: Border.all(
           color: Colors.grey.shade200,
         ),
+
         boxShadow: [
+
           BoxShadow(
             color: Colors.black.withOpacity(.04),
             blurRadius: 10,
-            offset: const Offset(0, 4),
+            offset: const Offset(0,4),
           )
+
         ],
+
       ),
+
+
       child: Column(
+
         children: [
 
-          /// Header
+
           Row(
+
             children: [
 
+
               CircleAvatar(
+
                 radius: isMobile ? 24 : 28,
-                backgroundImage: NetworkImage(image),
+
+                backgroundImage:
+                NetworkImage(product.image),
+
               ),
 
-              SizedBox(width: isMobile ? 10 : 14),
+
+
+              SizedBox(
+                width: isMobile ? 10 : 14,
+              ),
+
+
 
               Expanded(
+
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+
+                  crossAxisAlignment:
+                  CrossAxisAlignment.start,
+
+
                   children: [
 
+
                     Text(
-                      product,
+
+                      product.productName,
+
                       maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+
+                      overflow:
+                      TextOverflow.ellipsis,
+
+
                       style: TextStyle(
-                        fontSize: isMobile
+
+                        fontSize:
+                        isMobile
                             ? 15
                             : isTablet
                             ? 16
                             : 17,
-                        fontWeight: FontWeight.bold,
+
+                        fontWeight:
+                        FontWeight.bold,
+
                       ),
+
                     ),
 
-                    const SizedBox(height: 3),
+
+
+                    const SizedBox(height:3),
+
+
 
                     Text(
-                      category,
+
+                      product.category,
+
                       style: TextStyle(
-                        fontSize: isMobile ? 12 : 13,
-                        color: Colors.grey.shade600,
+
+                        fontSize:
+                        isMobile ? 12 : 13,
+
+                        color:
+                        Colors.grey.shade600,
+
                       ),
-                    ),
+
+                    )
+
+
                   ],
+
                 ),
+
               ),
 
-              _statusChip(
-                status,
-                rowSize,
-              ),
+
+
+              // _statusChip(
+              //   product.status,
+              //   rowSize,
+              // )
+
+
             ],
+
           ),
 
-          SizedBox(height: isMobile ? 12 : 16),
 
-          Divider(color: Colors.grey.shade300),
 
-          SizedBox(height: isMobile ? 10 : 14),
+          SizedBox(
+            height: isMobile ? 12 : 16,
+          ),
+
+
+
+          Divider(
+            color: Colors.grey.shade300,
+          ),
+
+
 
           _infoRow(
             context,
             "Seller",
-            seller,
+            product.seller,
           ),
+
+
 
           _infoRow(
             context,
             "Price",
-            price,
+            product.price,
           ),
+
+
 
           _infoRow(
             context,
             "Stock",
-            stock,
+            product.stock.toString(),
           ),
 
-          SizedBox(height: isMobile ? 14 : 18),
+
+
+          SizedBox(
+            height: isMobile ? 14 : 18,
+          ),
+
+
 
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
             children: [
 
+
               _actionButton(
+
+                context,
+
                 Icons.visibility_outlined,
+
                 Colors.blue,
+
                 iconSize,
+
                 "View Product",
+
+                    (){
+
+                  ProductViewDialog.show(
+                    context,
+                    product,
+                  );
+
+                },
+
               ),
 
+
+
+              const SizedBox(width:8),
+
+
+
               _actionButton(
+
+                context,
+
                 Icons.edit_outlined,
+
                 Colors.orange,
+
                 iconSize,
+
                 "Edit Product",
+
+                    (){
+
+                  ProductEditDialog.show(
+                    context,
+                    product,
+                  );
+
+                },
+
               ),
 
+
+
+              const SizedBox(width:8),
+
+
+
               _actionButton(
+
+                context,
+
                 Icons.inventory_2_outlined,
+
                 Colors.green,
+
                 iconSize,
+
                 "Manage Inventory",
+
+                    (){
+
+                  ProductInventoryDialog.show(
+                    context,
+                    product,
+                  );
+
+                },
+
               ),
 
+
+
+              const SizedBox(width:8),
+
+
+
               _actionButton(
+
+                context,
+
                 Icons.block_outlined,
+
                 Colors.red,
+
                 iconSize,
+
                 "Block Product",
+
+                    (){
+
+                  ProductBlockDialog.show(
+                    context,
+                    product,
+                  );
+
+                },
+
               ),
+
+
+
+              const SizedBox(width:8),
+
+
 
               _actionButton(
-                Icons.delete_outline,
-                Colors.grey,
-                iconSize,
-                "Delete Product",
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
 
+                context,
+
+                Icons.delete_outline,
+
+                Colors.grey,
+
+                iconSize,
+
+                "Delete Product",
+
+                    (){
+
+                  ProductDeleteDialog.show(
+                    context,
+                    product,
+                  );
+
+                },
+
+              ),
+
+
+
+            ],
+
+          )
+
+        ],
+
+      ),
+
+    );
+
+  }
 
   Widget _infoRow(
       BuildContext context,
@@ -440,13 +796,7 @@ class ProductTableWidget extends StatelessWidget {
 
   DataRow _productRow({
     required BuildContext context,
-    required String image,
-    required String product,
-    required String category,
-    required String seller,
-    required String price,
-    required String stock,
-    required String status,
+    required ProductModel productModel,
   }) {
     final width = MediaQuery.of(context).size.width;
 
@@ -471,6 +821,12 @@ class ProductTableWidget extends StatelessWidget {
         ? 17
         : 16;
 
+
+    final String status = productModel.active
+        ? "Active"
+        : "Blocked";
+
+
     return DataRow(
       cells: [
 
@@ -478,14 +834,17 @@ class ProductTableWidget extends StatelessWidget {
         DataCell(
           CircleAvatar(
             radius: imageRadius,
-            backgroundImage: NetworkImage(image),
+            backgroundImage: NetworkImage(
+              productModel.image,
+            ),
           ),
         ),
+
 
         /// Product
         DataCell(
           Text(
-            product,
+            productModel.productName,
             style: TextStyle(
               fontSize: rowSize,
               fontWeight: FontWeight.w600,
@@ -493,26 +852,33 @@ class ProductTableWidget extends StatelessWidget {
           ),
         ),
 
+
         /// Category
         DataCell(
           Text(
-            category,
-            style: TextStyle(fontSize: rowSize),
+            productModel.category,
+            style: TextStyle(
+              fontSize: rowSize,
+            ),
           ),
         ),
+
 
         /// Seller
         DataCell(
           Text(
-            seller,
-            style: TextStyle(fontSize: rowSize),
+            productModel.seller,
+            style: TextStyle(
+              fontSize: rowSize,
+            ),
           ),
         ),
+
 
         /// Price
         DataCell(
           Text(
-            price,
+            productModel.price,
             style: TextStyle(
               fontSize: rowSize,
               color: Colors.green,
@@ -521,19 +887,24 @@ class ProductTableWidget extends StatelessWidget {
           ),
         ),
 
+
         /// Stock
         DataCell(
           Text(
-            stock,
+            productModel.stock.toString(),
+
             style: TextStyle(
               fontSize: rowSize,
               fontWeight: FontWeight.w600,
-              color: int.parse(stock) > 0
+
+              color: productModel.stock > 0
                   ? Colors.black87
                   : Colors.red,
             ),
           ),
         ),
+
+
 
         /// Status
         DataCell(
@@ -543,57 +914,122 @@ class ProductTableWidget extends StatelessWidget {
           ),
         ),
 
+
+
         /// Actions
         DataCell(
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+          Row(
+            children: [
 
-                _actionButton(
-                  Icons.visibility_outlined,
-                  Colors.blue,
-                  iconSize,
-                  "View Product",
-                ),
 
-                const SizedBox(width: 8),
+              _actionButton(
+                context,
+                Icons.visibility_outlined,
+                Colors.blue,
+                iconSize,
+                "View Product",
+                    () {
 
-                _actionButton(
-                  Icons.edit_outlined,
-                  Colors.orange,
-                  iconSize,
-                  "Edit Product",
-                ),
+                  ProductViewDialog.show(
+                    context,
+                    productModel,
+                  );
 
-                const SizedBox(width: 8),
+                },
+              ),
 
-                _actionButton(
-                  Icons.inventory_2_outlined,
-                  Colors.green,
-                  iconSize,
-                  "Manage Inventory",
-                ),
 
-                const SizedBox(width: 8),
+              const SizedBox(width: 8),
 
-                _actionButton(
-                  Icons.block_outlined,
-                  Colors.red,
-                  iconSize,
-                  "Block Product",
-                ),
 
-                const SizedBox(width: 8),
 
-                _actionButton(
-                  Icons.delete_outline,
-                  Colors.grey,
-                  iconSize,
-                  "Delete Product",
-                ),
-              ],
-            )
+              _actionButton(
+                context,
+                Icons.edit_outlined,
+                Colors.orange,
+                iconSize,
+                "Edit Product",
+                    () {
+
+                  ProductEditDialog.show(
+                    context,
+                    productModel,
+                  );
+
+                },
+              ),
+
+
+
+              const SizedBox(width: 8),
+
+
+
+              _actionButton(
+                context,
+                Icons.inventory_2_outlined,
+                Colors.green,
+                iconSize,
+                "Manage Inventory",
+                    () {
+
+                  ProductInventoryDialog.show(
+                    context,
+                    productModel,
+                  );
+
+                },
+              ),
+
+
+
+              const SizedBox(width: 8),
+
+
+
+              _actionButton(
+                context,
+                Icons.block_outlined,
+                Colors.red,
+                iconSize,
+                "Block Product",
+                    () {
+
+                  ProductBlockDialog.show(
+                    context,
+                    productModel,
+                  );
+
+                },
+              ),
+
+
+
+              const SizedBox(width: 8),
+
+
+
+              _actionButton(
+                context,
+                Icons.delete_outline,
+                Colors.grey,
+                iconSize,
+                "Delete Product",
+                    () {
+
+                  ProductDeleteDialog.show(
+                    context,
+                    productModel,
+                  );
+
+                },
+              ),
+
+
+            ],
+          ),
         ),
+
       ],
     );
   }
@@ -642,30 +1078,51 @@ class ProductTableWidget extends StatelessWidget {
   }
 
   Widget _actionButton(
+      BuildContext context,
       IconData icon,
       Color color,
       double iconSize,
       String tooltip,
+      VoidCallback onTap,
       ) {
     return Tooltip(
       message: tooltip,
       waitDuration: const Duration(milliseconds: 300),
+
       child: InkWell(
-        onTap: () {},
+
+        onTap: onTap,
+
         borderRadius: BorderRadius.circular(8),
+
         child: Container(
+
           width: iconSize + 16,
+
           height: iconSize + 16,
+
           decoration: BoxDecoration(
+
             color: color.withOpacity(.12),
-            borderRadius: BorderRadius.circular(8),
+
+            borderRadius:
+            BorderRadius.circular(8),
+
           ),
+
+
           child: Icon(
+
             icon,
+
             size: iconSize,
+
             color: color,
+
           ),
+
         ),
+
       ),
     );
   }

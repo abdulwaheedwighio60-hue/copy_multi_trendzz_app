@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:multi_trendzz/core/constants/app_colors.dart';
+import 'package:multi_trendzz/core/widgets/table/responsive_data_table_widget.dart';
+import 'package:multi_trendzz/core/widgets/table/table_action_button.dart';
+import 'package:multi_trendzz/core/widgets/table/table_column_tile.dart';
 import 'package:multi_trendzz/presentation/admin/screens/seller/dialog/seller_block_dialog.dart';
 import 'package:multi_trendzz/presentation/admin/screens/seller/dialog/seller_delete_dialog.dart';
 import 'package:multi_trendzz/presentation/admin/screens/seller/dialog/seller_edit_dialog.dart';
@@ -269,30 +272,30 @@ class _SellerTableWidgetState extends State<SellerTableWidget> {
             child: SizedBox(
               height: 400, // 5 rows approx
               child: SingleChildScrollView(
-                child: DataTable(
-                  columnSpacing: isDesktop ? 38 : 25,
-                  horizontalMargin: 18,
+                child: ResponsiveDataTableWidget(
                   headingRowHeight: 58,
                   dataRowMinHeight: 72,
                   dataRowMaxHeight: 76,
+                  horizontalMargin: 18,
+                  columnSpacing: isDesktop ? 38 : 25,
 
                   columns: const [
-                    DataColumn(label: Text("Category")),
-                    DataColumn(label: Text("Slug")),
-                    DataColumn(label: Text("Products")),
-                    DataColumn(label: Text("Sales")),
-                    DataColumn(label: Text("Created")),
-                    DataColumn(label: Text("Status")),
-                    DataColumn(label: Text("Actions")),
+                    DataColumn(label: TableColumnTitle("Category")),
+                    DataColumn(label: TableColumnTitle("Slug")),
+                    DataColumn(label: TableColumnTitle("Products")),
+                    DataColumn(label: TableColumnTitle("Sales")),
+                    DataColumn(label: TableColumnTitle("Created")),
+                    DataColumn(label: TableColumnTitle("Status")),
+                    DataColumn(label: TableColumnTitle("Actions")),
                   ],
 
-                  rows: dummyCategories.map((seller) {
-                    return _sellerRow(
+                  rows: dummyCategories.map(
+                        (seller) => _sellerRow(
                       context: context,
                       seller: seller,
-                    );
-                  }).toList(),
-                ),
+                    ),
+                  ).toList(),
+                )
               ),
             ),
           )
@@ -424,37 +427,44 @@ class _SellerTableWidgetState extends State<SellerTableWidget> {
 
           Row(
             children: [
-
-              _actionButton(
-                Icons.visibility_outlined,
-                Colors.blue,
-                iconSize,
+              TableActionButton(
+                icon: Icons.visibility_outlined,
+                color: Colors.blue,
+                tooltip: "View Seller",
+                onTap: () {
+                  SellerViewDialog.show(context, seller);
+                },
               ),
+              const SizedBox(width: 8),
 
-              const SizedBox(width: 6),
-
-              _actionButton(
-                Icons.edit_outlined,
-                Colors.orange,
-                iconSize,
+              TableActionButton(
+                icon: Icons.edit_outlined,
+                color: Colors.orange,
+                tooltip: "Edit Seller",
+                onTap: () {
+                  SellerEditDialog.show(context, seller);
+                },
               ),
+              const SizedBox(width: 8),
 
-              const SizedBox(width: 6),
-
-              _actionButton(
-                Icons.block_outlined,
-                Colors.red,
-                iconSize,
+              TableActionButton(
+                icon: Icons.block_outlined,
+                color: Colors.red,
+                tooltip: "Block Seller",
+                onTap: () {
+                  SellerBlockDialog.show(context, seller);
+                },
               ),
+              const SizedBox(width: 8),
 
-              const SizedBox(width: 6),
-
-              _actionButton(
-                Icons.delete_outline,
-                Colors.grey,
-                iconSize,
+              TableActionButton(
+                icon: Icons.delete_outline,
+                color: Colors.grey,
+                tooltip: "Delete Seller",
+                onTap: () {
+                  SellerDeleteDialog.show(context, seller);
+                },
               ),
-
             ],
           ),
 

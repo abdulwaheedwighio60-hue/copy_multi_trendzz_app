@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:multi_trendzz/core/constants/app_colors.dart';
 import 'package:multi_trendzz/core/widgets/responsive_dialog.dart';
+import 'package:multi_trendzz/core/widgets/table/responsive_data_table_widget.dart';
+import 'package:multi_trendzz/core/widgets/table/table_action_button.dart';
+import 'package:multi_trendzz/core/widgets/table/table_column_tile.dart';
+import 'package:multi_trendzz/core/widgets/table/table_status_badge.dart';
 import 'package:multi_trendzz/presentation/admin/screens/category/dialog/category_delete_dialog.dart';
 import 'package:multi_trendzz/presentation/admin/screens/category/dialog/category_view_dialog.dart';
 import 'package:multi_trendzz/presentation/admin/screens/category/dialog/edit_category_dialog.dart';
@@ -124,27 +128,50 @@ class _CategoryTableWidgetState extends State<CategoryTableWidget> {
       ),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
-        child: DataTable(
-          horizontalMargin: 18,
-          columnSpacing: isDesktop ? 40 : 28,
+        child: ResponsiveDataTableWidget(
+
           headingRowHeight: 58,
+
           dataRowMinHeight: 72,
+
           dataRowMaxHeight: 76,
-          headingTextStyle: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: isDesktop ? 15 : 14,
-            color: Colors.black87,
-          ),
+
+          horizontalMargin: 18,
+
+          columnSpacing: isDesktop ? 40 : 28,
+
           columns: const [
-            DataColumn(label: Text("Category")),
-            DataColumn(label: Text("Description")),
-            DataColumn(label: Text("Products")),
-            DataColumn(label: Text("Status")),
-            DataColumn(label: Text("Created")),
-            DataColumn(label: Text("Actions")),
+
+            DataColumn(
+              label: TableColumnTitle("Category"),
+            ),
+
+            DataColumn(
+              label: TableColumnTitle("Description"),
+            ),
+
+            DataColumn(
+              label: TableColumnTitle("Products"),
+            ),
+
+            DataColumn(
+              label: TableColumnTitle("Status"),
+            ),
+
+            DataColumn(
+              label: TableColumnTitle("Created"),
+            ),
+
+            DataColumn(
+              label: TableColumnTitle("Actions"),
+            ),
+
           ],
+
           rows: categories.map((category) {
+
             return DataRow(
+
               cells: [
 
                 /// Category
@@ -153,7 +180,7 @@ class _CategoryTableWidgetState extends State<CategoryTableWidget> {
                     children: [
 
                       CircleAvatar(
-                        radius: isMobile ? 24 : 28,
+                        radius: 24,
                         backgroundImage: NetworkImage(category.image),
                       ),
 
@@ -166,6 +193,7 @@ class _CategoryTableWidgetState extends State<CategoryTableWidget> {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
+
                     ],
                   ),
                 ),
@@ -177,9 +205,7 @@ class _CategoryTableWidgetState extends State<CategoryTableWidget> {
                     child: Text(
                       category.description,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: rowSize,
-                      ),
+                      style: TextStyle(fontSize: rowSize),
                     ),
                   ),
                 ),
@@ -197,9 +223,8 @@ class _CategoryTableWidgetState extends State<CategoryTableWidget> {
 
                 /// Status
                 DataCell(
-                  _statusChip(
-                    category.status ? "Active" : "Inactive",
-                    rowSize,
+                  TableStatusBadge(
+                    text: category.status ? "Active" : "Inactive",
                   ),
                 ),
 
@@ -207,62 +232,90 @@ class _CategoryTableWidgetState extends State<CategoryTableWidget> {
                 DataCell(
                   Text(
                     category.createdDate,
-                    style: TextStyle(
-                      fontSize: rowSize,
-                    ),
+                    style: TextStyle(fontSize: rowSize),
                   ),
                 ),
 
                 /// Actions
                 DataCell(
+
                   Row(
+
                     children: [
 
-                      _actionButton(
-                        Icons.visibility_outlined,
-                        Colors.blue,
-                        "View Category",
-                            () {
-                              CategoryViewDialog.show(
-                                context,
-                                category,
-                              );
+                      TableActionButton(
+
+                        icon: Icons.visibility_outlined,
+
+                        color: Colors.blue,
+
+                        tooltip: "View Category",
+
+                        onTap: () {
+
+                          CategoryViewDialog.show(
+                            context,
+                            category,
+                          );
+
                         },
+
                       ),
 
                       const SizedBox(width: 8),
 
-                      _actionButton(
-                        Icons.edit_outlined,
-                        Colors.orange,
-                        "Edit Category",
-                            () {
-                              CategoryEditDialog.show(
-                                context,
-                                category,
-                              );
+                      TableActionButton(
+
+                        icon: Icons.edit_outlined,
+
+                        color: Colors.orange,
+
+                        tooltip: "Edit Category",
+
+                        onTap: () {
+
+                          CategoryEditDialog.show(
+                            context,
+                            category,
+                          );
+
                         },
+
                       ),
 
                       const SizedBox(width: 8),
 
-                      _actionButton(
-                        Icons.delete_outline,
-                        Colors.red,
-                        "Delete Category",
-                            () {
-                              CategoryDeleteDialog.show(
-                                context,
-                                category,
-                              );
+                      TableActionButton(
+
+                        icon: Icons.delete_outline,
+
+                        color: Colors.red,
+
+                        tooltip: "Delete Category",
+
+                        onTap: () {
+
+                          CategoryDeleteDialog.show(
+                            context,
+                            category,
+                          );
+
                         },
+
                       ),
+
                     ],
+
                   ),
+
                 ),
+
               ],
+
             );
+
           }).toList(),
+
         ),
       ),
     );

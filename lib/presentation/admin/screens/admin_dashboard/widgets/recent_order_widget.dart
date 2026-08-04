@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:multi_trendzz/core/widgets/table/responsive_data_table_widget.dart';
+import 'package:multi_trendzz/core/widgets/table/table_column_tile.dart';
+import 'package:multi_trendzz/core/widgets/table/table_status_badge.dart';
 
 class RecentOrdersWidget extends StatelessWidget {
   const RecentOrdersWidget({super.key});
@@ -58,74 +61,20 @@ class RecentOrdersWidget extends StatelessWidget {
           /// Responsive Table
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: DataTable(
-              headingRowColor:
-              WidgetStateProperty.all(Colors.grey.shade100),
-
+            child: ResponsiveDataTableWidget(
+              headingRowHeight: 56,
+              dataRowMinHeight: 66,
+              dataRowMaxHeight: 70,
+              horizontalMargin: 16,
               columnSpacing: isDesktop ? 40 : 20,
 
-              horizontalMargin: 16,
-
-              columns: [
-                DataColumn(
-                  label: Text(
-                    "Order ID",
-                    style: TextStyle(
-                      fontSize: headingSize,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-
-                DataColumn(
-                  label: Text(
-                    "Customer",
-                    style: TextStyle(
-                      fontSize: headingSize,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-
-                DataColumn(
-                  label: Text(
-                    "Product",
-                    style: TextStyle(
-                      fontSize: headingSize,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-
-                DataColumn(
-                  label: Text(
-                    "Amount",
-                    style: TextStyle(
-                      fontSize: headingSize,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-
-                DataColumn(
-                  label: Text(
-                    "Status",
-                    style: TextStyle(
-                      fontSize: headingSize,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-
-                DataColumn(
-                  label: Text(
-                    "Date",
-                    style: TextStyle(
-                      fontSize: headingSize,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
+              columns: const [
+                DataColumn(label: TableColumnTitle("Order ID")),
+                DataColumn(label: TableColumnTitle("Customer")),
+                DataColumn(label: TableColumnTitle("Product")),
+                DataColumn(label: TableColumnTitle("Amount")),
+                DataColumn(label: TableColumnTitle("Status")),
+                DataColumn(label: TableColumnTitle("Date")),
               ],
 
               rows: [
@@ -136,7 +85,6 @@ class RecentOrdersWidget extends StatelessWidget {
                   "iPhone 15 Pro",
                   "Rs. 285,000",
                   "Delivered",
-                  Colors.green,
                   "29 Jul",
                 ),
 
@@ -147,7 +95,6 @@ class RecentOrdersWidget extends StatelessWidget {
                   "Samsung S25",
                   "Rs. 210,000",
                   "Pending",
-                  Colors.orange,
                   "30 Jul",
                 ),
 
@@ -158,7 +105,6 @@ class RecentOrdersWidget extends StatelessWidget {
                   "MacBook Air",
                   "Rs. 350,000",
                   "Shipped",
-                  Colors.blue,
                   "30 Jul",
                 ),
 
@@ -169,7 +115,6 @@ class RecentOrdersWidget extends StatelessWidget {
                   "Dell XPS",
                   "Rs. 245,000",
                   "Cancelled",
-                  Colors.red,
                   "31 Jul",
                 ),
               ],
@@ -187,7 +132,6 @@ class RecentOrdersWidget extends StatelessWidget {
       String product,
       String amount,
       String status,
-      Color color,
       String date,
       ) {
     return DataRow(
@@ -224,23 +168,8 @@ class RecentOrdersWidget extends StatelessWidget {
         ),
 
         DataCell(
-          Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10,
-              vertical: 6,
-            ),
-            decoration: BoxDecoration(
-              color: color.withOpacity(.15),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Text(
-              status,
-              style: TextStyle(
-                fontSize: rowSize - 1,
-                color: color,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+          TableStatusBadge(
+            text: status,
           ),
         ),
 

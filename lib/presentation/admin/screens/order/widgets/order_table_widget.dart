@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multi_trendzz/core/constants/app_colors.dart';
+import 'package:multi_trendzz/core/widgets/table/responsive_data_table_widget.dart';
+import 'package:multi_trendzz/core/widgets/table/table_action_button.dart';
+import 'package:multi_trendzz/core/widgets/table/table_column_tile.dart';
+import 'package:multi_trendzz/core/widgets/table/table_payment_badge.dart';
+import 'package:multi_trendzz/core/widgets/table/table_status_badge.dart';
 import 'package:multi_trendzz/presentation/admin/screens/order/dialog/order_delete_dialog.dart';
 import 'package:multi_trendzz/presentation/admin/screens/order/dialog/order_edit_dialog.dart';
 import 'package:multi_trendzz/presentation/admin/screens/order/dialog/order_view_dialog.dart';
@@ -83,9 +88,7 @@ class _OrderTableWidgetState extends State<OrderTableWidget> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: Colors.grey.shade200,
-        ),
+        border: Border.all(color: Colors.grey.shade200),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(.04),
@@ -94,240 +97,185 @@ class _OrderTableWidgetState extends State<OrderTableWidget> {
           ),
         ],
       ),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: DataTable(
-          headingRowHeight: isDesktop ? 62 : 58,
-          dataRowMinHeight: isDesktop ? 80 : 72,
-          dataRowMaxHeight: isDesktop ? 82 : 74,
-          horizontalMargin: isDesktop ? 20 : 14,
-          columnSpacing: isDesktop ? 35 : 22,
+      child: ResponsiveDataTableWidget(
+        headingRowHeight: isDesktop ? 62 : 58,
+        dataRowMinHeight: isDesktop ? 80 : 72,
+        dataRowMaxHeight: isDesktop ? 82 : 74,
+        horizontalMargin: isDesktop ? 20 : 14,
+        columnSpacing: isDesktop ? 35 : 22,
 
-          columns: [
+        columns: const [
 
-            DataColumn(
-              label: Text(
-                "Customer",
-                style: TextStyle(
-                  fontSize: headingSize,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+          DataColumn(
+            label: TableColumnTitle("Customer"),
+          ),
 
-            DataColumn(
-              label: Text(
-                "Order ID",
-                style: TextStyle(
-                  fontSize: headingSize,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+          DataColumn(
+            label: TableColumnTitle("Order ID"),
+          ),
 
-            DataColumn(
-              label: Text(
-                "Seller",
-                style: TextStyle(
-                  fontSize: headingSize,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+          DataColumn(
+            label: TableColumnTitle("Seller"),
+          ),
 
-            DataColumn(
-              label: Text(
-                "Amount",
-                style: TextStyle(
-                  fontSize: headingSize,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+          DataColumn(
+            label: TableColumnTitle("Amount"),
+          ),
 
-            DataColumn(
-              label: Text(
-                "Payment",
-                style: TextStyle(
-                  fontSize: headingSize,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+          DataColumn(
+            label: TableColumnTitle("Payment"),
+          ),
 
-            DataColumn(
-              label: Text(
-                "Status",
-                style: TextStyle(
-                  fontSize: headingSize,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+          DataColumn(
+            label: TableColumnTitle("Status"),
+          ),
 
-            DataColumn(
-              label: Text(
-                "Date",
-                style: TextStyle(
-                  fontSize: headingSize,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+          DataColumn(
+            label: TableColumnTitle("Date"),
+          ),
 
-            DataColumn(
-              label: Text(
-                "Action",
-                style: TextStyle(
-                  fontSize: headingSize,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ],
+          DataColumn(
+            label: TableColumnTitle("Actions"),
+          ),
+        ],
 
-          rows: orders.map((order) {
+        rows: orders.map((order) {
+          return DataRow(
+            cells: [
 
-            return DataRow(
-              cells: [
+              /// Customer
+              DataCell(
+                SizedBox(
+                  width: isDesktop ? 220 : 180,
+                  child: Row(
+                    children: [
 
-                /// Customer
-                DataCell(
-                  SizedBox(
-                    width: isDesktop ? 220 : 180,
-                    child: Row(
-                      children: [
+                      CircleAvatar(
+                        radius: avatarRadius,
+                        backgroundImage:
+                        NetworkImage(order.customerImage),
+                      ),
 
-                        CircleAvatar(
-                          radius: avatarRadius,
-                          backgroundImage:
-                          NetworkImage(order.customerImage),
-                        ),
+                      SizedBox(width: isDesktop ? 12 : 8),
 
-                        SizedBox(width: isDesktop ? 12 : 8),
-
-                        Expanded(
-                          child: Text(
-                            order.customerName,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: textSize,
-                              fontWeight: FontWeight.w600,
-                            ),
+                      Expanded(
+                        child: Text(
+                          order.customerName,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: textSize,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                ),
-
-                /// Order ID
-                DataCell(
-                  Text(
-                    order.orderId,
-                    style: TextStyle(
-                      fontSize: textSize,
-                    ),
-                  ),
-                ),
-
-                /// Seller
-                DataCell(
-                  SizedBox(
-                    width: isDesktop ? 150 : 120,
-                    child: Text(
-                      order.sellerName,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: textSize,
                       ),
-                    ),
+                    ],
                   ),
                 ),
+              ),
 
-                /// Amount
-                DataCell(
-                  Text(
-                    "Rs ${order.totalAmount.toStringAsFixed(0)}",
-                    style: TextStyle(
-                      fontSize: textSize,
-                      fontWeight: FontWeight.w600,
-                    ),
+              /// Order ID
+              DataCell(
+                Text(
+                  order.orderId,
+                  style: TextStyle(fontSize: textSize),
+                ),
+              ),
+
+              /// Seller
+              DataCell(
+                SizedBox(
+                  width: isDesktop ? 150 : 120,
+                  child: Text(
+                    order.sellerName,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: textSize),
                   ),
                 ),
+              ),
 
-                /// Payment
-                DataCell(
-                  _paymentBadge(order.paymentMethod),
-                ),
-
-                /// Status
-                DataCell(
-                  _statusBadge(order.status),
-                ),
-
-                /// Date
-                DataCell(
-                  Text(
-                    order.orderDate,
-                    style: TextStyle(
-                      fontSize: textSize,
-                    ),
+              /// Amount
+              DataCell(
+                Text(
+                  "Rs ${order.totalAmount.toStringAsFixed(0)}",
+                  style: TextStyle(
+                    fontSize: textSize,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
+              ),
 
-                /// Action
-                DataCell(
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-
-                        _actionButton(
-                          context,
-                          Icons.visibility_outlined,
-                          Colors.blue,
-                          "View Order",
-                              () {
-                            OrderViewDialog.show(
-                              context,
-                              order,
-                            );
-                          },
-                        ),
-                        SizedBox(width: 3.w,),
-                        _actionButton(
-                          context,
-                          Icons.edit_outlined,
-                          Colors.orange,
-                          "Update Order",
-                              () {
-                            OrderEditDialog.show(
-                              context,
-                              order,
-                            );
-                          },
-                        ),
-                        SizedBox(width: 3.w,),
-                        _actionButton(
-                          context,
-                          Icons.delete_outline,
-                          Colors.red,
-                          "Delete Order",
-                              () {
-                            OrderDeleteDialog.show(
-                              context,
-                              order,
-                            );
-                          },
-                        ),
-
-                      ],
-                    )
+              /// Payment
+              DataCell(
+                TablePaymentBadge(
+                  text: order.paymentMethod,
                 ),
-              ],
-            );
-          }).toList(),
-        ),
+              ),
+
+              /// Status
+              DataCell(
+                TableStatusBadge(
+                  text: order.status,
+                ),
+              ),
+
+              /// Date
+              DataCell(
+                Text(
+                  order.orderDate,
+                  style: TextStyle(fontSize: textSize),
+                ),
+              ),
+
+              /// Actions
+              DataCell(
+                Row(
+                  children: [
+
+                    TableActionButton(
+                      icon: Icons.visibility_outlined,
+                      color: Colors.blue,
+                      tooltip: "View Order",
+                      onTap: () {
+                        OrderViewDialog.show(
+                          context,
+                          order,
+                        );
+                      },
+                    ),
+
+                    SizedBox(width: 4.w),
+
+                    TableActionButton(
+                      icon: Icons.edit_outlined,
+                      color: Colors.orange,
+                      tooltip: "Update Order",
+                      onTap: () {
+                        OrderEditDialog.show(
+                          context,
+                          order,
+                        );
+                      },
+                    ),
+
+                    SizedBox(width: 4.w),
+
+                    TableActionButton(
+                      icon: Icons.delete_outline,
+                      color: Colors.red,
+                      tooltip: "Delete Order",
+                      onTap: () {
+                        OrderDeleteDialog.show(
+                          context,
+                          order,
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          );
+        }).toList(),
       ),
     );
   }

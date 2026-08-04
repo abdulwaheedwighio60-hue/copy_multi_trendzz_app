@@ -1,4 +1,6 @@
 import 'package:multi_trendzz/core/widgets/responsive_dialog.dart';
+import 'package:multi_trendzz/core/widgets/table/responsive_data_table_widget.dart';
+import 'package:multi_trendzz/core/widgets/table/table_column_tile.dart';
 import 'package:multi_trendzz/presentation/admin/screens/customer/dialog/customer_block_dialog.dart';
 import 'package:multi_trendzz/presentation/admin/screens/customer/dialog/customer_delete_dialog.dart';
 import 'package:multi_trendzz/presentation/admin/screens/customer/dialog/customer_edit_dialog.dart';
@@ -145,26 +147,52 @@ class CustomerTableWidget extends StatelessWidget {
           /// DESKTOP TABLE
           isMobile ? const SizedBox() : SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: DataTable(
-              headingRowHeight:58,
-              dataRowMinHeight:72,
-              dataRowMaxHeight:76,
+            child: ResponsiveDataTableWidget(
+              headingRowHeight: 58,
+              dataRowMinHeight: 72,
+              dataRowMaxHeight: 76,
+              horizontalMargin: 18,
               columnSpacing: isDesktop ? 38 : 25,
-              horizontalMargin:18,
-              headingTextStyle: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: isDesktop ? 15: 14,
-              ),
+
               columns: const [
-                DataColumn(label: Text("Customer")),
-                DataColumn(label: Text("Email")),
-                DataColumn(label: Text("Phone")),
-                DataColumn(label: Text("Orders")),
-                DataColumn(label: Text("Status")),
-                DataColumn(label: Text("Join Date")),
-                DataColumn(label: Text("Actions")),
+
+                DataColumn(
+                  label: TableColumnTitle("Customer"),
+                ),
+
+                DataColumn(
+                  label: TableColumnTitle("Email"),
+                ),
+
+                DataColumn(
+                  label: TableColumnTitle("Phone"),
+                ),
+
+                DataColumn(
+                  label: TableColumnTitle("Orders"),
+                ),
+
+                DataColumn(
+                  label: TableColumnTitle("Status"),
+                ),
+
+                DataColumn(
+                  label: TableColumnTitle("Join Date"),
+                ),
+
+                DataColumn(
+                  label: TableColumnTitle("Actions"),
+                ),
               ],
-              rows: customers.map((customer)=> _customerRow(context, customer),).toList(),
+
+              rows: customers
+                  .map(
+                    (customer) => _customerRow(
+                  context,
+                  customer,
+                ),
+              )
+                  .toList(),
             ),
           ),
         ],

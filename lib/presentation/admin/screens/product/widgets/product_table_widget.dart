@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:multi_trendzz/core/constants/app_colors.dart';
+import 'package:multi_trendzz/core/widgets/table/responsive_data_table_widget.dart';
+import 'package:multi_trendzz/core/widgets/table/table_column_tile.dart';
 import 'package:multi_trendzz/presentation/admin/screens/product/dialog/product_block_dialog.dart';
 import 'package:multi_trendzz/presentation/admin/screens/product/dialog/product_delete_dialog.dart';
 import 'package:multi_trendzz/presentation/admin/screens/product/dialog/product_edit_dialog.dart';
 import 'package:multi_trendzz/presentation/admin/screens/product/dialog/product_inventory_dialog.dart';
 import 'package:multi_trendzz/presentation/admin/screens/product/dialog/product_view_dialog.dart';
-import 'package:multi_trendzz/presentation/admin/screens/product/model/dummy_product.dart';
 import 'package:multi_trendzz/presentation/admin/screens/product/model/product_model.dart';
 
 class ProductTableWidget extends StatefulWidget {
@@ -336,32 +336,55 @@ class _ProductTableWidgetState extends State<ProductTableWidget> {
 
               : SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: DataTable(
-              columnSpacing: isDesktop ? 38 : 25,
-              horizontalMargin: 18,
+            child: ResponsiveDataTableWidget(
+
               headingRowHeight: 58,
+
               dataRowMinHeight: 72,
+
               dataRowMaxHeight: 76,
 
-              headingTextStyle: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: isDesktop ? 15 : 14,
-              ),
+              horizontalMargin: 18,
+
+              columnSpacing: isDesktop ? 38 : 25,
 
               columns: const [
 
-                DataColumn(label: Text("Seller")),
-                DataColumn(label: Text("Store")),
-                DataColumn(label: Text("Email")),
-                DataColumn(label: Text("Phone")),
-                DataColumn(label: Text("Orders")),
-                DataColumn(label: Text("Sales")),
-                DataColumn(label: Text("Status")),
-                DataColumn(label: Text("Actions")),
+                DataColumn(
+                  label: TableColumnTitle("Image"),
+                ),
+
+                DataColumn(
+                  label: TableColumnTitle("Product"),
+                ),
+
+                DataColumn(
+                  label: TableColumnTitle("Category"),
+                ),
+
+                DataColumn(
+                  label: TableColumnTitle("Seller"),
+                ),
+
+                DataColumn(
+                  label: TableColumnTitle("Price"),
+                ),
+
+                DataColumn(
+                  label: TableColumnTitle("Stock"),
+                ),
+
+                DataColumn(
+                  label: TableColumnTitle("Status"),
+                ),
+
+                DataColumn(
+                  label: TableColumnTitle("Actions"),
+                ),
 
               ],
 
-              rows: products.map((product){
+              rows: products.map((product) {
 
                 return _productRow(
                   context: context,
@@ -369,7 +392,8 @@ class _ProductTableWidgetState extends State<ProductTableWidget> {
                 );
 
               }).toList(),
-            ),
+
+            )
           ),
         ],
       ),

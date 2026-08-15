@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:multi_trendzz/core/constants/app_colors.dart';
 import 'package:multi_trendzz/presentation/seller/seller_dashboard/widgets/seller_dashboard_header_widget.dart';
 import 'package:multi_trendzz/presentation/seller/seller_dashboard/widgets/seller_dashboard_summary_widget.dart';
 import 'package:multi_trendzz/presentation/seller/seller_dashboard/widgets/seller_latest_reviews_widget.dart';
@@ -12,6 +8,11 @@ import 'package:multi_trendzz/presentation/seller/seller_dashboard/widgets/selle
 import 'package:multi_trendzz/presentation/seller/seller_dashboard/widgets/seller_recent_order_widget.dart';
 import 'package:multi_trendzz/presentation/seller/seller_dashboard/widgets/seller_recent_transactions_widget.dart';
 import 'package:multi_trendzz/presentation/seller/seller_dashboard/widgets/seller_top_selling_product_widget.dart';
+import 'package:multi_trendzz/core/constants/app_colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 
 class SellerDashboardScreen extends StatefulWidget {
   const SellerDashboardScreen({super.key});

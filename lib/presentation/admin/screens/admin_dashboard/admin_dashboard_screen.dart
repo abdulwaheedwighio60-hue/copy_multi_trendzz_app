@@ -7,8 +7,6 @@ import 'package:multi_trendzz/presentation/admin/screens/admin_dashboard/widgets
 import 'package:multi_trendzz/presentation/admin/screens/admin_dashboard/widgets/popular_product_widget.dart';
 import 'package:multi_trendzz/presentation/admin/screens/admin_dashboard/widgets/recent_order_widget.dart';
 
-import 'package:multi_trendzz/presentation/bottom_nav_bar_screens/dashboard_screen/widgets/dashboard_header_widget.dart';
-
 class AdminDashboardScreen extends StatefulWidget {
   const AdminDashboardScreen({super.key});
 
@@ -24,9 +22,7 @@ class _AdminDashboardScreenState
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-
     final width = MediaQuery.of(context).size.width;
-
     final isMobile = width < 700;
     final isTablet = width >= 700 && width < 1100;
     final isDesktop = width >= 1100;
@@ -34,7 +30,6 @@ class _AdminDashboardScreenState
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: const Color(0xffF5F6FA),
-
       drawer: isMobile
           ? const Drawer(
         child: AdminSidebarWidget(),
@@ -42,14 +37,10 @@ class _AdminDashboardScreenState
           : null,
 
       body: SafeArea(
-
         child: Row(
-
           children: [
-
             /// Desktop Sidebar
             if (isDesktop)
-
               AdminSidebarWidget(
                 // selectedIndex: selectedIndex,
                 // onItemSelected: (index) {
@@ -62,14 +53,12 @@ class _AdminDashboardScreenState
             Expanded(
               child: Column(
                 children: [
-
                   /// Fixed Header
                   AdminDashboardHeaderWidget(
                     onMenuTap: () {
                       _scaffoldKey.currentState?.openDrawer();
                     },
                   ),
-
                   /// Scrollable Content
                   Expanded(
                     child: SingleChildScrollView(
@@ -77,65 +66,47 @@ class _AdminDashboardScreenState
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-
                           SizedBox(height: 25.h),
-
                           // StatisticsGridWidget(),
-
                           SizedBox(height: 25.h),
-
                           if (isMobile) ...[
-                            const RecentOrdersWidget(),
+                            RecentOrdersWidget(),
                             SizedBox(height: 25.h),
-
                           ],
-
                           if (isTablet) ...[
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Expanded(
+                                Expanded(
                                   child: RecentOrdersWidget(),
                                 ),
                                 SizedBox(width: 20.w),
                               ],
                             ),
-
-
-
                             SizedBox(height: 25.h),
-
-                            const PopularProductsWidget(),
+                            PopularProductsWidget(),
                           ],
-
                           if (isDesktop) ...[
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-
                                 Expanded(
                                   flex: 7,
                                   child: Column(
                                     children: [
                                       // RevenueChartWidget(),
-
-                                      const RecentOrdersWidget(),
+                                      RecentOrdersWidget(),
                                       SizedBox(height: 25.h),
                                       DashboardChartWidget(),
                                     ],
                                   ),
                                 ),
-
                                 SizedBox(width: 25.w),
-
                                 Expanded(
                                   flex: 4,
                                   child: Column(
-                                    children: const [
-
+                                    children: [
                                       PopularProductsWidget(),
-
-
                                     ],
                                   ),
                                 ),

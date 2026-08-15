@@ -7,9 +7,9 @@ import 'package:multi_trendzz/presentation/admin/screens/admin_dashboard/admin_d
 import 'package:multi_trendzz/presentation/auth_screens/forget_password/reset_password_screen.dart';
 import 'package:multi_trendzz/presentation/auth_screens/forget_password/verify_email_screen.dart';
 import 'package:multi_trendzz/presentation/auth_screens/forget_password/verify_otp_screen.dart';
+import 'package:multi_trendzz/presentation/auth_screens/store/create_store_screen.dart';
 import 'package:multi_trendzz/presentation/bottom_nav_bar_screens/chat/chat_detail_screen.dart';
 import 'package:multi_trendzz/presentation/bottom_nav_bar_screens/chat/chat_list_screen.dart';
-import 'package:multi_trendzz/presentation/bottom_nav_bar_screens/chat_screen/chat_screen.dart';
 import 'package:multi_trendzz/presentation/bottom_nav_bar_screens/coupon/coupon_screen.dart';
 import 'package:multi_trendzz/presentation/bottom_nav_bar_screens/my_order/my_order_screen.dart';
 import 'package:multi_trendzz/presentation/bottom_nav_bar_screens/my_order/track_order_screen.dart';
@@ -63,7 +63,7 @@ import 'package:go_router/go_router.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: AppRoutes.adminDashboardScreen,
+    initialLocation: AppRoutes.sellerRootScreen,
     routes: [
       GoRoute(
         path: AppRoutes.splashScreen,
@@ -77,6 +77,7 @@ class AppRouter {
         path: AppRoutes.onboardingScreen,
         builder: (context, state) => const OnboardingScreen(),
       ),
+
       GoRoute(
         path: AppRoutes.loginScreen,
         builder: (context, state) => const LoginScreen(),
@@ -88,6 +89,10 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.completeProfileScreen,
         builder: (context, state) => const CompleteProfileScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.createStoreScreen,
+        builder: (context, state) => const CreateStoreScreen(),
       ),
       GoRoute(
         path: AppRoutes.rootScreen,
@@ -239,10 +244,10 @@ class AppRouter {
         path: AppRoutes.sellerProductDetailScreen,
         builder: (context, state) => const ProductDetailScreen(),
       ),
-      GoRoute(
-        path: AppRoutes.editProductScreen,
-        builder: (context, state) => const EditProductScreen(),
-      ),
+      // GoRoute(
+      //   path: AppRoutes.editProductScreen,
+      //   builder: (context, state) => const EditProductScreen(),
+      // ),
 
       GoRoute(
         path: AppRoutes.orderScreen,

@@ -6,6 +6,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:multi_trendzz/core/constants/app_colors.dart';
 import 'package:multi_trendzz/core/constants/app_images.dart';
 import 'package:multi_trendzz/core/constants/app_texts.dart';
+import 'package:multi_trendzz/core/enums/user_role.dart';
 import 'package:multi_trendzz/core/provider/auth_provider.dart' show AuthProvider;
 import 'package:multi_trendzz/core/routes/app_routes.dart';
 import 'package:multi_trendzz/core/theme/app_text_style.dart';
@@ -34,6 +35,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool obscureText = true;
   bool isLoading = false;
   bool isTermsAccepted = false;
+  UserRole selectedRole = UserRole.buyer;
+
 
   @override
   void dispose() {
@@ -249,7 +252,48 @@ class _SignUpScreenState extends State<SignUpScreen> {
         _buildTermsAndCondition(),
 
         SizedBox(height: 25.h),
+        Text(
+          'Account Type',
+          style: AppTextStyles.bodyLarge.copyWith(
+            color: AppColors.darkColor,
+            fontSize: 15.sp,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
 
+        SizedBox(height: 8.h),
+
+        Row(
+          children: [
+            Expanded(
+              child: RadioListTile<UserRole>(
+                contentPadding: EdgeInsets.zero,
+                title: const Text('Buyer'),
+                value: UserRole.buyer,
+                groupValue: selectedRole,
+                onChanged: (value) {
+                  setState(() {
+                    selectedRole = value!;
+                  });
+                },
+              ),
+            ),
+
+            Expanded(
+              child: RadioListTile<UserRole>(
+                contentPadding: EdgeInsets.zero,
+                title: const Text('Seller'),
+                value: UserRole.seller,
+                groupValue: selectedRole,
+                onChanged: (value) {
+                  setState(() {
+                    selectedRole = value!;
+                  });
+                },
+              ),
+            ),
+          ],
+        ),
         ElevatedButtonWidget(
           text: isLoading ? 'Please wait...' : AppStrings.signUp,
           expand: true,

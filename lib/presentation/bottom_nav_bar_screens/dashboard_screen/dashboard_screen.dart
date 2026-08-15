@@ -257,7 +257,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         backgroundColor: AppColors.background,
         body: Column(
           children: [
-            const DashboardHeaderWidget(),
+            const BuyerDashboardHeaderWidget(),
 
             Expanded(
               child: SingleChildScrollView(
@@ -267,7 +267,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: 14.h),
-
                     _buildSectionHeader(
                       title: AppStrings.specialOfferForYou,
                       showSeeAll: false,

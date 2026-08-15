@@ -20,7 +20,7 @@ class AppRoutes {
   static const String verifyEmailScreen = "/verify-email-screen";
   static const String verifyOtpScreen = "/verify-otp-screen";
   static const String resetPasswordScreen = "/reset-password-screen";
-
+  static const String createStoreScreen = "/create-store-screen";
 
   static const String myOrderScreen = "/my-order-screen";
   static const String trackOrderScreen = '/track-order-screen';

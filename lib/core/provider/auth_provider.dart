@@ -21,11 +21,7 @@ class AuthProvider extends ChangeNotifier {
   /// ==========================
   /// SIGN UP
   /// ==========================
-  Future<AuthResponse?> signUp({
-    required String name,
-    required String email,
-    required String password,
-  }) async {
+  Future<AuthResponse?> signUp({required String name, required String email, required String password,}) async {
     try {
       _setLoading(true);
 
@@ -243,12 +239,9 @@ class AuthProvider extends ChangeNotifier {
 
 
 
-  Future<void> sendOtpEmail({
-    required String email,
-    required String otp,
-  }) async {
-    const String username = 'spermscope.app@gmail.com';
-    const String password = 'gcbndveousxlnhih';
+  Future<void> sendOtpEmail({required String email, required String otp,}) async {
+    const String username = 'multitrendzz.dev@gmail.com';
+    const String password = 'wknrjefkgasrjblo';
 
     final smtpServer = gmail(username, password);
 
@@ -261,134 +254,311 @@ class AuthProvider extends ChangeNotifier {
       <html>
       <head>
       <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Verify Your Email - Multi Trendzz</title>
       </head>
       
-      <body style="margin:0;padding:0;background:#f4f6f9;font-family:Arial,Helvetica,sans-serif;">
+      <body style="
+      margin:0;
+      padding:0;
+      background-color:#f5f6f8;
+      font-family:Arial,Helvetica,sans-serif;
+      ">
       
-      <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f6f9;padding:40px 0;">
+      <table
+      width="100%"
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      style="background-color:#f5f6f8;padding:40px 15px;"
+      >
       <tr>
       <td align="center">
       
-      <table width="600" cellpadding="0" cellspacing="0"
-      style="background:#ffffff;border-radius:16px;overflow:hidden;
-      box-shadow:0 8px 25px rgba(0,0,0,.08);">
+      <!-- Main Card -->
+      <table
+      width="600"
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      style="
+      max-width:600px;
+      width:100%;
+      background:#ffffff;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 6px 24px rgba(0,0,0,0.08);
+      "
+      >
       
-      <!-- Header -->
+      <!-- ================= HEADER ================= -->
+      
       <tr>
-      <td align="center"
-      style="background:#FF4747;padding:28px;">
+      <td
+      align="center"
+      style="
+      background:#FF4747;
+      padding:32px 25px;
+      "
+      >
+      
+      <div style="
+      font-size:34px;
+      margin-bottom:8px;
+      ">
+      🛍️
+      </div>
       
       <h1 style="
       margin:0;
       color:#ffffff;
       font-size:28px;
-      font-weight:bold;">
-      🛍️ Multi Trendzz
+      font-weight:700;
+      letter-spacing:0.3px;
+      ">
+      Multi Trendzz
       </h1>
       
       <p style="
-      margin-top:8px;
+      margin:8px 0 0 0;
       color:#ffecec;
-      font-size:15px;">
-      Your Trusted Online Shopping Store
+      font-size:14px;
+      line-height:22px;
+      ">
+      Shop Smart. Shop Trendy.
       </p>
       
       </td>
       </tr>
       
-      <!-- Body -->
+      
+      <!-- ================= BODY ================= -->
+      
       <tr>
-      <td style="padding:35px;">
+      <td
+      style="
+      padding:40px 38px;
+      "
+      >
       
       <h2 style="
-      margin-top:0;
-      color:#222;">
+      margin:0 0 14px 0;
+      color:#202124;
+      font-size:23px;
+      font-weight:700;
+      ">
       Verify Your Email Address
       </h2>
       
       <p style="
-      color:#555;
+      margin:0 0 18px 0;
+      color:#555555;
       font-size:15px;
-      line-height:26px;">
+      line-height:25px;
+      ">
       Hello,
       </p>
       
       <p style="
-      color:#555;
+      margin:0;
+      color:#555555;
       font-size:15px;
-      line-height:26px;">
-      Thank you for creating your <b>Multi Trendzz</b> account.
-      To complete your registration, please verify your email address using the One-Time Password (OTP) below.
+      line-height:26px;
+      ">
+      Thank you for creating your
+      <strong style="color:#FF4747;">
+      Multi Trendzz
+      </strong>
+      account.
       </p>
-      
-      <!-- OTP Box -->
-      <div style="
-      margin:35px 0;
-      text-align:center;">
-      
-      <div style="
-      display:inline-block;
-      background:#FFF5F5;
-      border:2px dashed #FF4747;
-      border-radius:14px;
-      padding:18px 35px;
-      font-size:40px;
-      font-weight:bold;
-      letter-spacing:10px;
-      color:#FF4747;">
-      
-      $otp
-      
-      </div>
-      
-      </div>
       
       <p style="
-      text-align:center;
+      margin:10px 0 0 0;
+      color:#555555;
       font-size:15px;
-      color:#666;">
-      This verification code will expire in
-      <b>5 minutes.</b>
+      line-height:26px;
+      ">
+      Please use the verification code below to confirm your email address and complete your registration.
       </p>
+      
+      
+      <!-- ================= OTP SECTION ================= -->
+      
+      <table
+      width="100%"
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      style="margin:32px 0;"
+      >
+      <tr>
+      <td
+      align="center"
+      style="
+      background:#fff7f7;
+      border:1px solid #ffd6d6;
+      border-radius:14px;
+      padding:25px 15px;
+      "
+      >
+      
+      <p style="
+      margin:0 0 10px 0;
+      font-size:12px;
+      font-weight:600;
+      color:#888888;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      ">
+      Your Verification Code
+      </p>
+      
+      <div style="
+      font-size:38px;
+      font-weight:700;
+      letter-spacing:9px;
+      color:#FF4747;
+      line-height:48px;
+      ">
+      $otp
+      </div>
+      
+      </td>
+      </tr>
+      </table>
+      
+      
+      <!-- ================= EXPIRY ================= -->
+      
+      <table
+      width="100%"
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      style="margin-bottom:28px;"
+      >
+      <tr>
+      <td
+      align="center"
+      style="
+      background:#f8f9fa;
+      border-radius:10px;
+      padding:13px;
+      "
+      >
+      
+      <p style="
+      margin:0;
+      font-size:14px;
+      color:#666666;
+      line-height:22px;
+      ">
+      ⏱️ This verification code expires in
+      <strong style="color:#222222;">
+      5 minutes
+      </strong>.
+      </p>
+      
+      </td>
+      </tr>
+      </table>
+      
+      
+      <!-- ================= SECURITY ================= -->
+      
+      <table
+      width="100%"
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      style="
+      background:#fafafa;
+      border-radius:12px;
+      "
+      >
+      <tr>
+      <td style="padding:18px;">
+      
+      <p style="
+      margin:0 0 7px 0;
+      font-size:14px;
+      font-weight:700;
+      color:#333333;
+      ">
+      🔒 Security Notice
+      </p>
+      
+      <p style="
+      margin:0;
+      font-size:13px;
+      line-height:22px;
+      color:#777777;
+      ">
+      Never share this verification code with anyone.
+      Multi Trendzz will never ask you to share your OTP or password.
+      </p>
+      
+      </td>
+      </tr>
+      </table>
+      
       
       <hr style="
       border:none;
       border-top:1px solid #eeeeee;
-      margin:30px 0;">
+      margin:30px 0;
+      ">
+      
       
       <p style="
-      font-size:14px;
-      color:#777;
-      line-height:24px;">
-      
-      If you did not request this email, you can safely ignore it.
-      No changes will be made to your account.
-      
+      margin:0;
+      font-size:13px;
+      line-height:22px;
+      color:#888888;
+      ">
+      If you did not create a Multi Trendzz account or request this verification code, you can safely ignore this email.
       </p>
       
       </td>
       </tr>
       
-      <!-- Footer -->
+      
+      <!-- ================= FOOTER ================= -->
+      
       <tr>
-      <td align="center"
+      <td
+      align="center"
       style="
       background:#fafafa;
-      padding:25px;
-      border-top:1px solid #eeeeee;">
+      padding:25px 20px;
+      border-top:1px solid #eeeeee;
+      "
+      >
       
       <p style="
       margin:0;
       font-size:14px;
-      color:#666;">
+      color:#666666;
+      ">
       Thank you for choosing
-      <b style="color:#FF4747;">Multi Trendzz</b>
+      <strong style="color:#FF4747;">
+      Multi Trendzz
+      </strong>
       </p>
       
       <p style="
-      margin-top:10px;
+      margin:8px 0 0 0;
       font-size:12px;
-      color:#999;">
+      color:#999999;
+      ">
+      Your trusted online shopping destination
+      </p>
+      
+      <p style="
+      margin:15px 0 0 0;
+      font-size:11px;
+      color:#aaaaaa;
+      ">
       © 2026 Multi Trendzz. All Rights Reserved.
       </p>
       
@@ -396,6 +566,17 @@ class AuthProvider extends ChangeNotifier {
       </tr>
       
       </table>
+      
+      <!-- Bottom spacing -->
+      
+      <p style="
+      margin:18px 0 0 0;
+      font-size:11px;
+      color:#aaaaaa;
+      text-align:center;
+      ">
+      This is an automated email. Please do not reply.
+      </p>
       
       </td>
       </tr>
@@ -416,10 +597,7 @@ class AuthProvider extends ChangeNotifier {
       rethrow;
     }
   }
-
-  Future<String?> sendOtp({
-    required String email,
-  }) async {
+  Future<String?> sendOtp({required String email,}) async {
     try {
       _setLoading(true);
 
@@ -461,12 +639,7 @@ class AuthProvider extends ChangeNotifier {
       _setLoading(false);
     }
   }
-
-
-  Future<String?> verifyOtp({
-    required String email,
-    required String enteredOtp,
-  }) async {
+  Future<String?> verifyOtp({required String email, required String enteredOtp,}) async {
     try {
       _setLoading(true);
 
@@ -525,11 +698,7 @@ class AuthProvider extends ChangeNotifier {
       _setLoading(false);
     }
   }
-
-
-  Future<String?> resendOtp({
-    required String email,
-  }) async {
+  Future<String?> resendOtp({required String email,}) async {
     try {
       _setLoading(true);
 

@@ -30,12 +30,8 @@ class _SettingsScreenState
     return AnnotatedRegion<SystemUiOverlayStyle>(
 
       value: const SystemUiOverlayStyle(
-
         statusBarColor: AppColors.primaryColor,
-
-        statusBarIconBrightness:
-        Brightness.light,
-
+        statusBarIconBrightness: Brightness.light,
       ),
 
       child: Scaffold(

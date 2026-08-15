@@ -5,6 +5,7 @@ import 'package:multi_trendzz/core/constants/app_colors.dart';
 import 'package:multi_trendzz/core/model/botton_nav_item.dart';
 import 'package:multi_trendzz/core/theme/app_text_style.dart';
 import 'package:multi_trendzz/features/chat/screens/chat_list/seller_chat_list_screen.dart';
+import 'package:multi_trendzz/presentation/seller/products/screens/manage_products_screen/manage_products_screen.dart';
 import 'package:multi_trendzz/presentation/seller/seller_dashboard/seller_dashboard_screen.dart';
 import 'package:multi_trendzz/presentation/seller/settings/screens/seller_profile_screen.dart';
 
@@ -21,7 +22,7 @@ class _SellerRootScreenState extends State<SellerRootScreen> {
   final List<Widget> screens = const [
     SellerDashboardScreen(),
     SellerChatListScreen(),
-    // SellerOrdersScreen(),
+    ManageProductsScreen(),
     // SellerAnalyticsScreen(),
     SellerProfileScreen(),
   ];

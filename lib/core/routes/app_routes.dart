@@ -43,6 +43,7 @@ class AppRoutes {
   static const String addProductScreen = "/add-product-screen";
   static const String sellerProductDetailScreen = "/seller-product-detail-screen";
   static const String editProductScreen = "/edit-product-screen";
+  static const String manageProductScreen = "manage-product-screen";
 
 
   static const String orderScreen = "/order-screen";
@@ -75,6 +76,8 @@ class AppRoutes {
   ///CHat Screens Routes
   static const String sellerChatListScreen = "/seller-chat-list-screen";
   static const String sellerChatScreen = "/seller-chat-screen";
-
   static const String adminDashboardScreen = "/admin-dashboard-screen";
+
+
+  static const String sellerStoreScreen = "/seller-store-screen";
 }

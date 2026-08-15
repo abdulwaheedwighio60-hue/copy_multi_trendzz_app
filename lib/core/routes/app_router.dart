@@ -43,6 +43,7 @@ import 'package:multi_trendzz/presentation/seller/order/order_detail_screen.dart
 import 'package:multi_trendzz/presentation/seller/order/order_screen.dart';
 import 'package:multi_trendzz/presentation/seller/products/screens/add_product/add_product_screen.dart';
 import 'package:multi_trendzz/presentation/seller/products/screens/edit_product/edit_product_screen.dart';
+import 'package:multi_trendzz/presentation/seller/products/screens/manage_products_screen/manage_products_screen.dart';
 import 'package:multi_trendzz/presentation/seller/products/screens/seller_product_screen.dart';
 import 'package:multi_trendzz/presentation/seller/root/seller_root_screen.dart';
 import 'package:multi_trendzz/presentation/seller/settings/screens/bank_account_screen.dart';
@@ -54,6 +55,7 @@ import 'package:multi_trendzz/presentation/seller/settings/screens/settings_scre
 import 'package:multi_trendzz/presentation/seller/settings/screens/tax_settings_screen.dart';
 import 'package:multi_trendzz/presentation/seller/shipping/shopping_detail_screen.dart';
 import 'package:multi_trendzz/presentation/seller/shipping/shopping_screen.dart';
+import 'package:multi_trendzz/presentation/seller/store/seller_store_screen.dart';
 import 'package:multi_trendzz/presentation/seller/wallet/seller_wallet_screen.dart';
 import 'package:multi_trendzz/presentation/welcome_screen/welcome_screen.dart';
 import 'package:multi_trendzz/presentation/splash_screen/splash_screen.dart';
@@ -63,12 +65,20 @@ import 'package:go_router/go_router.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: AppRoutes.sellerRootScreen,
+    initialLocation: AppRoutes.sellerStoreScreen,
     routes: [
       GoRoute(
         path: AppRoutes.splashScreen,
         builder: (context, state) => const SplashScreen(),
       ),
+
+
+      GoRoute(
+        path: AppRoutes.sellerStoreScreen,
+        builder: (context, state) => const SellerStoreScreen(),
+      ),
+
+
       GoRoute(
         path: AppRoutes.welcomeScreen,
         builder: (context, state) => const WelcomeScreen(),
@@ -289,6 +299,11 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.sellerNotificationScreen,
         builder: (context, state) => const SellerNotificationScreen(),
+      ),
+
+      GoRoute(
+        path: AppRoutes.manageProductScreen,
+        builder: (context, state) => const ManageProductsScreen(),
       ),
 
       GoRoute(

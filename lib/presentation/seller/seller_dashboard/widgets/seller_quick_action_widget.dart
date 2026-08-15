@@ -44,7 +44,7 @@ class SellerQuickActionsWidget extends StatelessWidget {
             title: "My Products",
             subtitle: "Manage all your products",
             onTap: () {
-              context.push(AppRoutes.sellerProductScreen);
+              context.push(AppRoutes.manageProductScreen);
             },
           ),
 

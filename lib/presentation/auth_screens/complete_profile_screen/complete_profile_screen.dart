@@ -2,6 +2,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multi_trendzz/core/constants/app_colors.dart';
 import 'package:multi_trendzz/core/constants/app_constants.dart';
 import 'package:multi_trendzz/core/constants/app_texts.dart';
+import 'package:multi_trendzz/core/enums/user_role.dart';
 import 'package:multi_trendzz/core/helper/app_helper.dart';
 import 'package:multi_trendzz/core/provider/auth_provider.dart';
 import 'package:multi_trendzz/core/routes/app_routes.dart';
@@ -283,6 +284,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
         profileImage: imageUrl,
       );
 
+      const UserRole userRole = UserRole.seller;
+
       if (!mounted) return;
 
       AppSnackBar.show(
@@ -291,7 +294,19 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
         message: "Profile completed successfully.",
       );
 
-      context.go(AppRoutes.rootScreen);
+      switch (userRole) {
+        case UserRole.buyer:
+          context.go(AppRoutes.rootScreen);
+          break;
+
+        case UserRole.seller:
+          context.go(AppRoutes.sellerStoreScreen);
+          break;
+
+        case UserRole.admin:
+          context.go(AppRoutes.adminDashboardScreen);
+          break;
+      }
 
     } catch (e) {
       if (!mounted) return;
